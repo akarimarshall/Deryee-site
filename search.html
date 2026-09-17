@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>搜索 | Deryee.pro</title>
+<meta name="description" content="站内搜索">
+<meta name="robots" content="noindex">
+<link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="./styles.css">
+<script src="./assets/theme.js"></script>
+</head>
+<body data-page="search">
+<div id="site-nav"></div>
+
+<main>
+  <section class="hero" style="padding-bottom:var(--sp-5)">
+    <div class="glow"></div>
+    <div class="wrap" style="position:relative;z-index:1">
+      <span class="hero__eyebrow">搜索</span>
+      <h1 class="hero__title" style="font-size:var(--fs-h1)">站内搜索</h1>
+    </div>
+  </section>
+  <section class="section" style="padding-top:0">
+    <div class="wrap" style="max-width:680px">
+      <input class="search-input" id="q" type="search" placeholder="输入关键词，回车搜索…" autocomplete="off">
+      <div id="results" style="margin-top:var(--sp-5)"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer" style="margin-top:var(--sp-7)">
+  <div class="wrap"><p class="footer__note">© 2026 此处填写：版权署名</p></div>
+</footer>
+
+<script src="./assets/nav.js" defer></script>
+<script src="./assets/search.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>文章 | Deryee.pro</title>
+<meta name="description" content="此处填写：文章列表页一句话描述（SEO）。">
+<link rel="canonical" href="https://deryee.pro/articles/">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../styles.css">
+<script src="../assets/theme.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "文章",
+  "url": "https://deryee.pro/articles/",
+  "author": { "@type": "Person", "name": "韩德灵" },
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "url": "https://deryee.pro/articles/overseas-holding/" },
+      { "@type": "ListItem", "position": 2, "url": "https://deryee.pro/articles/vie-red-chip/" },
+      { "@type": "ListItem", "position": 3, "url": "https://deryee.pro/articles/spv-tax-residence/" }
+    ]
+  }
+}
+</script>
+</head>
+<body data-page="articles">
+<div id="site-nav"></div>
+
+<main>
+  <section class="hero" style="padding-bottom:var(--sp-6)">
+    <div class="glow"></div>
+    <div class="wrap" style="position:relative;z-index:1">
+      <span class="hero__eyebrow">文章</span>
+      <h1 class="hero__title" style="font-size:var(--fs-h1)">知识卡片<br>与长文</h1>
+      <p class="hero__sub">此处填写：内容板块一句话描述（写什么领域、什么频率更新）。</p>
+      <div class="segment" id="catFilter" role="tablist">
+        <a class="segment__item is-on" href="#" data-cat="all">全部</a>
+        <a class="segment__item" href="#" data-cat="cat-1">此处填写：分类一</a>
+        <a class="segment__item" href="#" data-cat="cat-2">此处填写：分类二</a>
+        <a class="segment__item" href="#" data-cat="cat-3">此处填写：分类三</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:var(--sp-5)">
+    <div class="wrap" style="max-width:760px">
+      <div class="post-list">
+        <a class="post-item" href="./overseas-holding/" data-cat="cat-1">
+          <span class="post-item__tag">此处填写：分类一</span>
+          <div class="post-item__title">此处填写：文章标题一（海外持股架构怎么搭）</div>
+          <p class="post-item__excerpt">此处填写：一句摘要首句。</p>
+        </a>
+        <a class="post-item" href="./vie-red-chip/" data-cat="cat-2">
+          <span class="post-item__tag">此处填写：分类二</span>
+          <div class="post-item__title">此处填写：文章标题二（VIE 与红筹的边界）</div>
+          <p class="post-item__excerpt">此处填写：一句摘要首句。</p>
+        </a>
+        <a class="post-item" href="./spv-tax-residence/" data-cat="cat-3">
+          <span class="post-item__tag">此处填写：分类三</span>
+          <div class="post-item__title">此处填写：文章标题三（SPV 的税务居民地选择）</div>
+          <p class="post-item__excerpt">此处填写：一句摘要首句。</p>
+        </a>
+        <!-- 新文章复制一条 post-item，data-cat 用对应分类；或用 tools/new_article.py 生成 -->
+      </div>
+      <p style="margin-top:var(--sp-5);font-size:var(--fs-small);color:var(--ink-3)">此处填写：分页或订阅引导（占位）。</p>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__inner">
+      <div class="footer__col">
+        <h4>Deryee.pro</h4>
+        <a href="../about/">关于我</a>
+        <a href="../system/">我的体系</a>
+        <a href="../knowledge/">知识栏目</a>
+      </div>
+      <div class="footer__col">
+        <h4>内容</h4>
+        <a href="../articles/">全部文章</a>
+        <a href="../search.html">搜索</a>
+      </div>
+      <div class="footer__col">
+        <h4>此处填写：社交入口</h4>
+        <a href="#" rel="noopener">此处填写：平台一</a>
+        <a href="#" rel="noopener">此处填写：平台二</a>
+      </div>
+    </div>
+    <p class="footer__note">© 2026 此处填写：版权署名</p>
+  </div>
+</footer>
+
+<script src="../assets/nav.js" defer></script>
+<script src="../assets/reveal.js" defer></script>
+<script>
+(function () {
+  var bar = document.getElementById("catFilter");
+  if (!bar) return;
+  bar.addEventListener("click", function (e) {
+    var a = e.target.closest(".segment__item");
+    if (!a) return;
+    e.preventDefault();
+    bar.querySelectorAll(".segment__item").forEach(function (x) { x.classList.remove("is-on"); });
+    a.classList.add("is-on");
+    var cat = a.getAttribute("data-cat");
+    document.querySelectorAll(".post-item").forEach(function (item) {
+      item.style.display = (cat === "all" || item.getAttribute("data-cat") === cat) ? "" : "none";
+    });
+  });
+})();
+</script>
+</body>
+</html>

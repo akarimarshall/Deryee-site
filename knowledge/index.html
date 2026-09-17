@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>知识栏目 | Deryee.pro</title>
+<meta name="description" content="知识栏目：知识沉淀与流转的完整体系演示（排版复刻自 Project Cairn，占位内容待替换为自有知识卡片）。">
+<link rel="canonical" href="https://deryee.pro/knowledge/">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../styles.css">
+<script src="../assets/theme.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "知识栏目",
+  "url": "https://deryee.pro/knowledge/",
+  "author": { "@type": "Person", "name": "韩德灵" }
+}
+</script>
+<style>
+  /* knowledge 页局部样式 */
+  .stage { display: grid; grid-template-columns: minmax(0, 56fr) 120px minmax(0, 54fr); gap: var(--sp-4); align-items: start; }
+  .corridor { display: flex; flex-direction: column; justify-content: center; gap: var(--sp-5); padding-top: var(--sp-6); }
+  .arrow { position: relative; text-align: center; font-size: var(--fs-micro); color: var(--ink-3); }
+  .arrow .lab { display: block; margin-bottom: 6px; font-weight: 600; }
+  .arrow .shaft { display: block; height: 2px; background: var(--hairline-strong); border-radius: 999px; position: relative; overflow: visible; }
+  .arrow .shaft::after { content: ""; position: absolute; right: -2px; top: 50%; transform: translateY(-50%); border: 5px solid transparent; border-left-color: var(--hairline-strong); }
+  .arrow.back .shaft::after { right: auto; left: -2px; border-left-color: transparent; border-right-color: var(--hairline-strong); }
+  .arrow.is-live .shaft { background: var(--accent); }
+  .arrow.is-live .shaft::after { border-left-color: var(--accent); }
+  .arrow.back.is-live .shaft::after { border-left-color: transparent; border-right-color: var(--accent); }
+  .legend { display: flex; flex-wrap: wrap; gap: var(--sp-3); margin-top: var(--sp-5); }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; font-size: var(--fs-micro); color: var(--ink-3); }
+  .legend i { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+  .ribbon {
+    margin-top: var(--sp-5); padding: var(--sp-4) var(--sp-5);
+    background: var(--surface); border: 1px solid var(--hairline); border-radius: var(--r-md);
+    font-size: var(--fs-small); color: var(--ink-2); line-height: 1.8;
+  }
+  .ribbon b { color: var(--ink); }
+  .chips { display: flex; flex-wrap: wrap; gap: var(--sp-2); margin-top: var(--sp-3); }
+  .chip {
+    font-size: var(--fs-small); padding: 7px 16px; border-radius: var(--r-pill);
+    border: 1px solid var(--hairline); background: var(--surface); color: var(--ink-2);
+    transition: border-color var(--dur-fast), transform var(--dur-fast);
+  }
+  .chip:hover { border-color: var(--accent); transform: translateY(-1px); }
+  .drawer {
+    position: fixed; top: 0; right: 0; bottom: 0; width: min(90vw, 380px); z-index: 1100;
+    background: var(--surface-solid); border-left: 1px solid var(--hairline);
+    box-shadow: var(--sh-3); transform: translateX(105%); transition: transform .4s var(--ease);
+    padding: var(--sp-5); overflow-y: auto;
+  }
+  .drawer.is-open { transform: none; }
+  .drawer h3 { font-size: var(--fs-h3); margin-bottom: var(--sp-3); padding-right: 40px; }
+  .drawer dl dt { font-size: var(--fs-micro); font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); margin-top: var(--sp-3); }
+  .drawer dl dd { font-size: var(--fs-small); color: var(--ink-2); line-height: 1.7; }
+  .drawer__close { position: absolute; top: var(--sp-4); right: var(--sp-4); width: 32px; height: 32px; border-radius: 50%; background: var(--bg-2); color: var(--ink-2); font-size: 15px; }
+  .auditlist { list-style: none; columns: 2; column-gap: var(--sp-6); margin-top: var(--sp-4); }
+  .auditlist li { font-size: var(--fs-small); color: var(--ink-2); padding: 6px 0; break-inside: avoid; border-bottom: 1px solid var(--hairline); }
+  .auditlist li::before { content: "✓"; color: var(--tag-4); font-weight: 700; margin-right: 8px; }
+  .introcol { display: grid; grid-template-columns: 1fr 1.2fr 1fr; gap: var(--sp-4); align-items: stretch; margin: var(--sp-6) 0; }
+  .ecocard { padding: var(--sp-4); border: 1px solid var(--hairline); border-radius: var(--r-md); background: var(--surface); }
+  .ecocard h4 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+  .ecocard p { font-size: var(--fs-small); color: var(--ink-2); }
+  .ecocard + .ecocard { margin-top: var(--sp-3); }
+  .cairncard { text-align: center; padding: var(--sp-6) var(--sp-5); border: 1px solid var(--hairline); border-radius: var(--r-lg); background: var(--surface); box-shadow: var(--sh-2); display: flex; flex-direction: column; justify-content: center; }
+  .cairncard .cname { font-size: var(--fs-h2); font-weight: 700; letter-spacing: -.02em; }
+  .cairncard .ctag { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; margin-top: var(--sp-3); }
+  @media (max-width: 920px) {
+    .stage { grid-template-columns: 1fr; }
+    .corridor { flex-direction: row; padding: 0; }
+    .corridor .arrow { flex: 1; }
+    .introcol { grid-template-columns: 1fr; }
+    .auditlist { columns: 1; }
+  }
+</style>
+</head>
+<body data-page="knowledge">
+<div id="site-nav"></div>
+
+<main style="padding-bottom:120px">
+  <!-- Hero + 视图切换 -->
+  <section class="hero" style="padding-bottom:var(--sp-5)">
+    <div class="glow"></div>
+    <div class="wrap" style="position:relative;z-index:1">
+      <span class="hero__eyebrow">知识栏目</span>
+      <h1 class="hero__title" style="font-size:var(--fs-h1)">知识沉淀与流转</h1>
+      <p class="hero__sub">此处填写：知识栏目一句话定位（占位演示内容来自 Project Cairn，展示「知识卡片」的完整排版形态，后续替换为你自己的股权知识体系）。</p>
+      <div class="segment" role="tablist">
+        <button class="segment__item is-on" id="tabIntro" data-view="intro" role="tab">简 介</button>
+        <button class="segment__item" id="tabDetail" data-view="detail" role="tab">详 情</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 简介视图 ============ -->
+  <section id="viewIntro" class="wrap">
+    <!-- AI AGENT 区 -->
+    <div style="text-align:center" class="reveal">
+      <h2 class="section__title" style="font-size:var(--fs-h3)">🤖 AI AGENT</h2>
+      <p class="section__lede" style="margin-bottom:0;font-size:15px">项目中的智能协作角色——它们产生经验，也回收经验。</p>
+      <div class="chips" style="justify-content:center">
+        <span class="chip">主控 Agent</span>
+        <span class="chip">调研 Agent</span>
+        <span class="chip">写作 Agent</span>
+        <span class="chip">审校 Agent</span>
+        <span class="chip">+N</span>
+      </div>
+    </div>
+
+    <div class="flowtrack" style="max-width:520px;margin:var(--sp-5) auto"><span class="flowdot" id="fdTop"></span></div>
+
+    <!-- 三栏：生态 / 主卡 / 经验 -->
+    <div class="introcol">
+      <div class="reveal">
+        <p class="section__eyebrow" style="margin-bottom:var(--sp-3)">生态位</p>
+        <div class="ecocard"><h4>项目工作区</h4><p>经验在这里产生。</p></div>
+        <div class="ecocard"><h4>知识库</h4><p>经验在这里沉淀、复用。</p></div>
+        <div class="ecocard"><h4>回流通道</h4><p>沉淀的经验反哺下一个项目。</p></div>
+      </div>
+      <div class="cairncard reveal reveal-d1 born-target" data-born="T0">
+        <div class="cname">Project Cairn</div>
+        <p style="color:var(--ink-2);font-size:15px;margin-top:6px">把 AI 协作项目中的高价值经验，沉淀进可复用的知识库。</p>
+        <div class="ctag">
+          <span class="badge">Agent Skill</span><span class="badge badge--t4">知识库</span><span class="badge badge--t3">时序流转</span>
+        </div>
+      </div>
+      <div class="reveal reveal-d2">
+        <p class="section__eyebrow" style="margin-bottom:var(--sp-3)">四类经验</p>
+        <div class="ecocard" style="border-left:4px solid var(--tag-1)"><h4>元规则</h4><p>项目怎么运转的约定。</p></div>
+        <div class="ecocard" style="border-left:4px solid var(--tag-3);margin-top:var(--sp-3)"><h4>时序日志</h4><p>每一步做了什么、为什么。</p></div>
+        <div class="ecocard" style="border-left:4px solid var(--tag-4);margin-top:var(--sp-3)"><h4>主题知识</h4><p>可复用的结论与方法。</p></div>
+        <div class="ecocard" style="border-left:4px solid var(--tag-5);margin-top:var(--sp-3)"><h4>外部输入</h4><p>参考资料与引用来源。</p></div>
+      </div>
+    </div>
+
+    <div class="flowtrack" style="max-width:520px;margin:0 auto var(--sp-6)"><span class="flowdot" id="fdBottom"></span></div>
+
+    <!-- 知识库区 -->
+    <div style="text-align:center" class="reveal">
+      <h2 class="section__title" style="font-size:var(--fs-h3)">🗄 知识库</h2>
+      <p class="section__lede" style="margin-bottom:0;font-size:15px">兼容 Obsidian / Notion / 飞书——笔记卡片即最小知识单元。</p>
+    </div>
+    <p style="text-align:center;font-size:var(--fs-small);color:var(--ink-3);margin-top:var(--sp-4)">↓ 切到「详 情」看完整目录与笔记墙，或点底部播放器看时序流转。</p>
+  </section>
+
+  <!-- ============ 详情视图 ============ -->
+  <section id="viewDetail" class="wrap-wide" style="display:none">
+    <div class="stage">
+      <!-- 项目目录 -->
+      <section class="panel">
+        <div class="panel__tab"><span class="tab-dot"></span>📁 项目目录</div>
+        <div class="panel__body">
+          <ul class="tree">
+            <li class="born-target" data-born="T1">
+              <span class="tree__item-title">AGENTS.md</span>
+              <p class="tree__item-desc">全项目的元规则：角色分工、协作边界、经验沉淀触发点。</p>
+              <button class="badge" data-detail="agents">元规则 · 详</button>
+            </li>
+            <li class="born-target" data-born="T1">
+              <span class="tree__item-title">CLAUDE.md</span>
+              <p class="tree__item-desc">主控 Agent 的启动配置。</p>
+              <button class="badge badge--t1" data-detail="claude">元规则 · 简</button>
+            </li>
+            <li class="born-target" data-born="T2">
+              <span class="tree__item-title">ROADMAP.md</span>
+              <p class="tree__item-desc">里程碑与当前阶段。</p>
+              <button class="badge" data-detail="roadmap">元规则 · 详</button>
+            </li>
+            <li class="born-target" data-born="T4">
+              <span class="tree__item-title">LOG/ · 时序目录</span>
+              <p class="tree__item-desc">按时序记录每一步。</p>
+              <button class="badge badge--t3" data-detail="log">时序</button>
+              <ul>
+                <li><span class="tree__item-title">T0-项目启动.md</span><p class="tree__item-desc">需求与边界快照。</p></li>
+                <li><span class="tree__item-title">T3-方案生成.md</span><p class="tree__item-desc">方案与取舍记录。</p></li>
+              </ul>
+            </li>
+            <li class="born-target" data-born="T5">
+              <span class="tree__item-title">PROC/ · 过程制品</span>
+              <p class="tree__item-desc">草稿、中间产物。</p>
+              <button class="badge badge--t2" data-detail="proc">制品</button>
+            </li>
+            <li class="born-target" data-born="T6">
+              <span class="tree__item-title">TOPIC.md · 主题笔记</span>
+              <p class="tree__item-desc">本项目萃取出的可复用知识。</p>
+              <button class="badge badge--t4" data-detail="topic">知识 · 详</button>
+            </li>
+            <li class="born-target" data-born="T5">
+              <span class="tree__item-title">EXT/ · 外部输入</span>
+              <p class="tree__item-desc">用户提供的资料与外部参考。</p>
+              <button class="badge badge--t5" data-detail="ext">外部</button>
+            </li>
+            <li class="born-target" data-born="T7">
+              <span class="tree__item-title">REF/ + CITED.md</span>
+              <p class="tree__item-desc">参考资料与引用登记。</p>
+              <button class="badge badge--t5" data-detail="ref">引用</button>
+            </li>
+            <li class="born-target" data-born="T7">
+              <span class="tree__item-title">INDEX.md · 知识库索引</span>
+              <p class="tree__item-desc">全部主题笔记的总目录。</p>
+              <button class="badge badge--t4" data-detail="index">索引</button>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 流转箭头 -->
+      <div class="corridor">
+        <div class="arrow" id="aGrad"><span class="lab">经验流出</span><span class="shaft"></span></div>
+        <div class="arrow back" id="aPull"><span class="lab">知识回流</span><span class="shaft"></span></div>
+        <p style="font-size:var(--fs-micro);color:var(--ink-3);text-align:center">播放时序<br>观察流动</p>
+      </div>
+
+      <!-- 知识库 -->
+      <section class="panel">
+        <div class="panel__tab"><span class="tab-dot" style="background:var(--tag-4)"></span>🗄 知识库 · Obsidian / Notion / 飞书</div>
+        <div class="panel__body">
+          <p class="wiki__fm" style="margin-bottom:var(--sp-3)">INDEX · <span id="indexCount">5</span> 条主题笔记</p>
+          <div class="wikigrid">
+            <article class="wiki born-target" data-born="T7">
+              <div class="wiki__title">经验萃取的四步法</div>
+              <div class="wiki__fm">type: method · status: stable</div>
+              <p class="wiki__desc">从项目时序日志中识别高价值片段，四步萃取为可复用知识卡。</p>
+              <a class="wiki__link" href="#w2" onclick="showDetail('w1');return false;">[[引用登记规范]]</a>
+            </article>
+            <article class="wiki born-target" data-born="T7">
+              <div class="wiki__title">引用登记规范</div>
+              <div class="wiki__fm">type: rule · status: stable</div>
+              <p class="wiki__desc">每条入库知识必须登记来源，保证可追溯。</p>
+              <a class="wiki__link" href="#" onclick="showDetail('w2');return false;">[[经验萃取的四步法]]</a>
+            </article>
+            <article class="wiki born-target" data-born="T8">
+              <div class="wiki__title">知识回流触发点</div>
+              <div class="wiki__fm">type: rule · status: stable</div>
+              <p class="wiki__desc">定义新项目在哪些节点必须检索既有知识。</p>
+              <a class="wiki__link" href="#" onclick="showDetail('w3');return false;">[[卡片粒度原则]]</a>
+            </article>
+            <article class="wiki born-target" data-born="T8">
+              <div class="wiki__title">卡片粒度原则</div>
+              <div class="wiki__fm">type: method · status: draft</div>
+              <p class="wiki__desc">一张卡只讲一件事，控制在 200 字以内。</p>
+              <a class="wiki__link" href="#" onclick="showDetail('w4');return false;">[[双链的意义]]</a>
+            </article>
+            <article class="wiki born-target" data-born="T8">
+              <div class="wiki__title">双链的意义</div>
+              <div class="wiki__fm">type: note · status: draft</div>
+              <p class="wiki__desc">用 [[双链]] 把卡片织成网，而不是树。</p>
+              <a class="wiki__link" href="#" onclick="showDetail('w5');return false;">[[经验萃取的四步法]]</a>
+            </article>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- 图例 -->
+    <div class="legend">
+      <span><i style="background:var(--tag-1)"></i>元规则</span>
+      <span><i style="background:var(--tag-3)"></i>时序日志</span>
+      <span><i style="background:var(--tag-4)"></i>知识</span>
+      <span><i style="background:var(--tag-5)"></i>外部输入</span>
+      <span><i style="background:var(--tag-2)"></i>过程制品</span>
+    </div>
+
+    <!-- 仲裁规则 -->
+    <div class="ribbon">
+      <b>仲裁规则：</b>当知识库与项目现场冲突时——<b>现场优先</b>，但冲突本身要在 24h 内沉淀为一张新知识卡；当两张知识卡冲突时，<b>引用链更长、被验证次数更多者优先</b>。
+    </div>
+
+    <!-- 体检清单 -->
+    <div class="ribbon" style="margin-top:var(--sp-3)">
+      <b>知识库体检清单（14 条，节选 8 条）：</b>
+      <ul class="auditlist">
+        <li>每张卡都有 type 与 status</li>
+        <li>每条入库知识登记了来源</li>
+        <li>INDEX 与实际卡片数一致</li>
+        <li>无孤儿卡（至少一条双链）</li>
+        <li>时序日志无断档</li>
+        <li>引用的 EXT 文件真实存在</li>
+        <li>draft 超过 30 天需复审</li>
+        <li>每季度回流一次旧项目经验</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<!-- 底部 Dock 播放器 -->
+<div class="dock" id="dock">
+  <div class="dock__bar">
+    <span class="dock__label">时序与流转</span>
+    <div class="dock__steps" id="steps"></div>
+    <div class="dock__controls">
+      <button class="dock__btn dock__btn--ghost" id="btnView">详情 ▴</button>
+      <button class="dock__btn" id="btnPlay">▶ 播放</button>
+    </div>
+  </div>
+</div>
+
+<!-- 详情抽屉 -->
+<aside class="drawer" id="drawer" aria-hidden="true">
+  <button class="drawer__close" id="drawerClose">✕</button>
+  <div id="drawerBody"></div>
+</aside>
+
+<footer class="footer" style="margin-top:var(--sp-6)">
+  <div class="wrap">
+    <div class="footer__inner">
+      <div class="footer__col">
+        <h4>Deryee.pro</h4>
+        <a href="../about/">关于我</a>
+        <a href="../system/">我的体系</a>
+      </div>
+      <div class="footer__col">
+        <h4>内容</h4>
+        <a href="../articles/">全部文章</a>
+        <a href="../search.html">搜索</a>
+      </div>
+    </div>
+    <p class="footer__note">© 2026 此处填写：版权署名 · 本页排版结构复刻自 Project Cairn（iblinkq），内容为占位演示。</p>
+  </div>
+</footer>
+
+<script src="../assets/nav.js" defer></script>
+<script src="../assets/reveal.js" defer></script>
+<script src="../assets/dock.js" defer></script>
+</body>
+</html>
