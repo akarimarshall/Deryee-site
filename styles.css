@@ -294,6 +294,26 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
 .card__desc { font-size: 15px; color: var(--ink-2); }
 .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--sp-4); }
 
+/* ---------- 资料下载卡 ---------- */
+.resource {
+  display: grid; grid-template-columns: 60px 1fr auto;
+  gap: var(--sp-4); align-items: center;
+}
+.resource__icon {
+  width: 60px; height: 72px; border-radius: var(--r-sm);
+  display: grid; place-items: center;
+  background: linear-gradient(160deg, var(--accent), var(--accent-2));
+  color: #fff; font-size: var(--fs-micro); font-weight: 700; letter-spacing: .08em;
+  box-shadow: var(--sh-1);
+}
+.resource__title { font-size: var(--fs-h3); font-weight: 600; letter-spacing: -.01em; margin-bottom: 4px; }
+.resource__desc { font-size: 15px; color: var(--ink-2); line-height: 1.6; }
+.resource__meta { font-size: var(--fs-micro); color: var(--ink-3); margin-top: 6px; letter-spacing: .04em; }
+@media (max-width: 640px) {
+  .resource { grid-template-columns: 60px 1fr; }
+  .resource .btn { grid-column: 1 / -1; justify-content: center; }
+}
+
 /* ---------- 面板（文件夹 → 大圆角 + segment 标签） ---------- */
 .panel {
   background: var(--surface-2);
@@ -502,6 +522,42 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
   line-height: 1.75; border-left: 4px solid var(--accent);
   padding: var(--sp-2) 0 var(--sp-2) var(--sp-4); margin: var(--sp-5) 0;
 }
+
+/* ---------- 资料下载卡 ---------- */
+.resource {
+  display: flex; align-items: center; gap: var(--sp-4); flex-wrap: wrap;
+  background: var(--surface);
+  -webkit-backdrop-filter: var(--blur-card);
+  backdrop-filter: var(--blur-card);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-lg);
+  padding: var(--sp-5);
+  box-shadow: var(--sh-1);
+  transition: transform var(--dur), box-shadow var(--dur);
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .resource { background: var(--surface-solid); }
+}
+.resource:hover { transform: translateY(-3px); box-shadow: var(--sh-2); }
+.resource__thumb {
+  flex: 0 0 auto; width: 62px; height: 78px; border-radius: var(--r-sm);
+  display: grid; place-items: center;
+  background: linear-gradient(160deg, var(--accent), var(--accent-2));
+  color: #fff; font-size: 13px; font-weight: 700; letter-spacing: .06em;
+  box-shadow: var(--sh-1); position: relative;
+}
+.resource__thumb::after {
+  content: ""; position: absolute; top: 0; right: 0;
+  border-width: 0 16px 16px 0; border-style: solid;
+  border-color: transparent var(--bg) transparent transparent;
+  border-radius: 0 0 0 4px;
+}
+.resource__body { flex: 1 1 260px; min-width: 0; }
+.resource__title { font-size: var(--fs-h3); font-weight: 600; letter-spacing: -.01em; margin-bottom: 4px; }
+.resource__desc { font-size: 15px; color: var(--ink-2); line-height: 1.6; margin-bottom: var(--sp-2); }
+.resource__meta { font-size: var(--fs-micro); color: var(--ink-3); letter-spacing: .04em; }
+.resource__action { flex: 0 0 auto; }
+.resource-list { display: grid; gap: var(--sp-3); }
 
 /* ---------- 文章条目（极简列表） ---------- */
 .post-item {

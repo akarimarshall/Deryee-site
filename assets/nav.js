@@ -1,6 +1,13 @@
 /* deryee.pro — 注入式共享导航 + 移动端菜单 + 主题切换 */
 (function () {
-  var base = window.SITE_BASE || "./";
+  // 按当前路径深度自动推算相对根路径：/ → ./ ；/about/ → ../ ；/articles/xx/ → ../../
+  var autoBase = (function () {
+    var p = location.pathname.replace(/index\.html$/, "");
+    var depth = (p.match(/\//g) || []).length - 1;
+    if (depth < 1) return "./";
+    return new Array(depth + 1).join("../");
+  })();
+  var base = window.SITE_BASE || autoBase;
   var page = document.body.getAttribute("data-page") || "";
   var themeIcon = function () {
     var cur = document.documentElement.getAttribute("data-theme") ||
@@ -17,7 +24,7 @@
 
   var html = '' +
     '<div class="nav__inner">' +
-    '  <a class="nav__brand" href="' + base + '"><span class="brand-dot"></span>Deryee<span style="color:var(--ink-3)">.pro</span></a>' +
+    '  <a class="nav__brand" href="' + base + '"><span class="brand-dot"></span>德益师兄<span style="color:var(--ink-3)">Deryee</span></a>' +
     '  <nav class="nav__links" aria-label="主导航">' +
     links.map(function (l) {
       return '<a class="nav__link' + (page === l.key ? " is-active" : "") + '" href="' + l.href + '">' + l.label + "</a>";
