@@ -13,16 +13,16 @@
      这样在简繁切换改写了网址（history.replaceState）之后依然能正确取到。 */
   var T = window.T || function (s) { return s; };
 
-  /* ---------- 平台配置：此处填写：正式链接 ---------- */
+  /* ---------- 平台配置：正式链接（2026-09-22 接入） ---------- */
   var PLATFORMS = [
-    { key: "email",        label: "工作邮箱",   href: "此处填写：邮箱地址（保持 mailto: 前缀）" },
+    { key: "email",        label: "工作邮箱",   href: "mailto:deryee.deyi@gmail.com" },
     { key: "wechat-work",  label: "微信工作号", href: "#", qr: "/assets/qr/wechat-work.png" },
     { key: "wechat-mp",    label: "微信公众号", href: "#", qr: "/assets/qr/wechat-mp.png" },
-    { key: "channels",     label: "视频号",     href: "此处填写：视频号主页链接", qr: "/assets/qr/channels.png" },
-    { key: "douyin",       label: "抖音",       href: "此处填写：抖音主页链接" },
-    { key: "xiaohongshu",  label: "小红书",     href: "此处填写：小红书主页链接" },
-    { key: "bilibili",     label: "B站",        href: "此处填写：B站空间链接" },
-    { key: "flowus",       label: "FlowUs",     href: "此处填写：FlowUs 链接" }
+    { key: "channels",     label: "视频号",     href: "#", qr: "/assets/qr/channels.png" },
+    { key: "douyin",       label: "抖音",       href: "https://www.douyin.com/user/MS4wLjABAAAAy8X5EQX1GtUmZYLBMpvBFTWfl-DL6NG3MW_pMNySVwY?" },
+    { key: "xiaohongshu",  label: "小红书",     href: "https://xhslink.cn/o/3MUeoSyXO9E" },
+    { key: "bilibili",     label: "B站",        href: "https://space.bilibili.com/637598" },
+    { key: "flowus",       label: "FlowUs",     href: "https://deryee.flowus.cn" }
   ];
 
   var hosts = document.querySelectorAll('[id^="social-row"]');
