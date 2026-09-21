@@ -37,7 +37,7 @@
 - 新增社交图标导航组件：`assets/social.js` + `assets/social-icons.js` + `assets/icons/*.svg`（8 枚 24×24 单色图标）
   - 覆盖：工作邮箱、微信工作号、微信公众号、视频号、抖音、小红书、B站、FlowUs
   - 支持一页多容器（任意 id 以 `social-row` 开头的元素）
-  - 全站页脚均已注入；当前链接与二维码为占位，待填 `assets/qr/*.png`
+  - 全站页脚均已注入；真实平台链接已接入（B站 `space.bilibili.com/637598`、小红书 `xhslink.cn/o/3MUeoSyXO9E`、抖音用户页、FlowUs `deryee.flowus.cn`、工作邮箱 `deryee.deyi@gmail.com` mailto）；微信工作号 / 微信公众号 / 视频号以二维码弹窗呈现，二维码图已落位 `assets/qr/{wechat-work,wechat-mp,channels}.png`（当前为占位图，替换为真实二维码即可，文件名保持不变）
 - 新增微信系二维码弹窗 `.qr-modal`（毛玻璃遮罩 + 卡片，支持点背景 / ✕ / Esc 关闭）
 - 新增 `assets/qr/` 二维码目录与说明 `README.md`
 - 新增工具脚本 `tools/build_social_icons.py`（把 SVG 打包成内联 JS 表，规避 fetch 限制）
