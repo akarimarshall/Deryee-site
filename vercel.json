@@ -3,10 +3,10 @@
   "buildCommand": null,
   "cleanUrls": true,
   "trailingSlash": true,
-  "rewrites": [
+  "routes": [
     {
-      "source": "/:path((?!maintenance$|maintenance/|assets/|api/|favicon|robots.txt|sitemap.xml|.*\\.(css|js|svg|png|jpg|jpeg|ico|pdf|webp|woff2|woff)).*)",
-      "destination": "/api/maintenance"
+      "src": "/(?!maintenance|assets/|api/|favicon|robots\\.txt|sitemap\\.xml|.*\\.(?:css|js|svg|png|jpg|jpeg|ico|pdf|webp|woff2|woff)).*",
+      "dest": "/api/maintenance"
     }
   ]
 }

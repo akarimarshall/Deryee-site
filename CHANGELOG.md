@@ -32,8 +32,9 @@
 
 ### Added（维护模式）
 - 新增独立维护页 `maintenance/index.html`：`noindex`、保留左上角「德益师兄 Deryee」品牌（复用 `nav.js`）、居中显示「网站正在升级中，很快就会回来」、下方一排 8 个平台图标（复用 `social.js`，功能与全站一致：App 唤起 / 微信系弹二维码 / mailto）
-- 新增 `api/maintenance.js`（Vercel Edge Function，零构建）：读取环境变量 `MAINTENANCE_MODE`，为 `true` 时把**任意路径（含子地址、`/zh-tw/` 子地址）** 307 重定向到 `/maintenance/`；维护页本身与 `/assets/` 直接放行，避免死循环
-- `vercel.json` 新增 `rewrites` catch-all（负向前瞻排除 `/maintenance/`、`/assets/`、`/api/`、favicon/robots/sitemap 及静态后缀）
+- 新增 `api/maintenance.mjs`（Vercel Edge Function，`.mjs` 即 ESM，零构建）：读取环境变量 `MAINTENANCE_MODE`，为 `true` 时把**任意路径（含子地址、`/zh-tw/` 子地址）** 307 重定向到 `/maintenance/`；维护页本身与 `/assets/`、`/api/` 直接放行，避免死循环
+- `vercel.json` 用 legacy `routes`（运行于 **beforeFiles** 阶段，可覆盖静态文件）做 catch-all：PCRE 负向前瞻排除 `/maintenance/`、`/assets/`、`/api/`、favicon/robots/sitemap 及静态后缀，命中则 `dest` 到 Edge Function
+  - **关键**：普通 `rewrites` 跑在文件系统检查之后、会被真实存在的 HTML 文件绕过（导致维护模式挡不住 `/about/` 等真实页面），所以必须用 `routes`（beforeFiles）
 - 维护开关改为**站内自助**：Vercel 后台改 `MAINTENANCE_MODE` 变量值即生效，无需改代码、无需对话、通常无需重部署
 - `gen_zh_tw.py` `EXCLUDE_PATHS` 加 `maintenance/index.html`；`gen_sitemap.py` 加 `SKIP_SITEMAP` 与 robots `Disallow: /maintenance/`；`build_index.py` 跳过 `maintenance`
 - `sitemap.xml` 由 24 → **23** 条 URL（维护页不收录）
@@ -41,6 +42,11 @@
 ### Changed（法务页署名）
 - `ip/index.html` 两处「韩德灵」→「德益师兄」（用户已放开此前冻结）；重建搜索索引刷新 `assets/search-index.json` 摘要缓存
 - 全站 `grep -r 韩德灵` 现已为 0 处
+
+### Fixed（部署失败根因）
+- 修复 Vercel 部署报 "Deployment failed / Invalid route source pattern"：原 `vercel.json` 在 `rewrites` 里用了 `routes` 风格的裸负向前瞻 `/(?!...)/`（还混了 `:path` 命名参数修饰符），Vercel 的 path-to-regexp 拒绝该写法 → 部署中断
+- 改走 legacy `routes` + PCRE 裸负向前瞻（Vercel 官方维护示例同款写法），并把 Edge Function 由 `.js` 改 `.mjs`（避免纯静态项目里 ESM 语法被当 CommonJS 解析而导入失败）
+- 用 path-to-regexp v6（与 Vercel 同代引擎）与 Node 原生 RegExp（锚定全路径）双重验证 `routes.src` 合法且 14 条关键路径匹配正确
 
 ### Changed
 - 导航栏新增「资料下载」入口（共 5 项）
