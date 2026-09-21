@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>德益师兄 · 跨境股权架构师 | Deryee.pro</title>
+<title>德益师兄 | Deryee.pro</title>
 <meta name="description" content="此处填写：一句话站点定位（身份标签 + 内容价值 + 更新频率）。个人 IP 品牌与知识博客。">
-<meta property="og:title" content="德益师兄 · 跨境股权架构师 | Deryee.pro">
+<meta property="og:title" content="德益师兄 | Deryee.pro">
 <meta property="og:description" content="此处填写：一句话站点定位。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://deryee.pro/">
@@ -29,7 +29,6 @@
       "name": "德益师兄",
       "alternateName": "Deryee",
       "url": "https://deryee.pro/",
-      "jobTitle": "跨境股权架构师",
       "description": "此处填写：人物一句话定位。",
       "knowsAbout": ["股权架构", "跨境架构", "股权战略咨询"]
     },
@@ -52,7 +51,7 @@
   <section class="hero">
     <div class="glow"></div>
     <div class="wrap" style="position:relative;z-index:1">
-      <span class="hero__eyebrow">跨境股权架构师 · DELIN PRO 出品</span>
+      <span class="hero__eyebrow">DELIN PRO 出品</span>
       <h1 class="hero__title">此处填写：<br>你的主页大标题</h1>
       <p class="hero__sub">此处填写：100–120 字的自我定位长句（身份标签 + 代表作/体系 + 读者能获得什么 + 更新频率），参考「一句讲清你是谁、你做什么、为什么值得订阅」。</p>
       <div class="hero__cta">
@@ -66,20 +65,25 @@
   <section class="section section--alt">
     <div class="wrap">
       <p class="section__eyebrow reveal">我的故事</p>
-      <h2 class="section__title reveal">此处填写：故事板块标题<br>（如「从 XX 到 XX 的转折」）</h2>
-      <p class="section__lede reveal reveal-d1">此处填写：第一段叙事——从业背景与起点（150–200 字）。</p>
-      <p class="section__lede reveal reveal-d2">此处填写：第二段叙事——关键转折点与选择（150–200 字）。</p>
-      <p class="section__lede reveal reveal-d3">此处填写：第三段叙事——现在的信念与你在做的事（150–200 字），结尾自然引导到 CTA。</p>
-      <div class="reveal reveal-d3" style="display:flex;gap:32px;align-items:center;flex-wrap:wrap;margin-top:var(--sp-5)">
-        <a class="btn btn--primary" href="./system/">了解我的体系 <span class="btn-arrow">→</span></a>
-        <div class="stamp">此处填写<br>你的<br>关键词</div>
+      <div class="story">
+        <div>
+          <h2 class="section__title reveal">此处填写：故事板块标题<br>（如「从 XX 到 XX 的转折」）</h2>
+          <p class="section__lede reveal reveal-d1">此处填写：第一段叙事——从业背景与起点（150–200 字）。</p>
+          <p class="section__lede reveal reveal-d2">此处填写：第二段叙事——关键转折点与选择（150–200 字）。</p>
+          <p class="section__lede reveal reveal-d3">此处填写：第三段叙事——现在的信念与你在做的事（150–200 字），结尾自然引导到 CTA。</p>
+          <div class="reveal reveal-d3" style="display:flex;gap:32px;align-items:center;flex-wrap:wrap;margin-top:var(--sp-5)">
+            <a class="btn btn--primary" href="./system/">了解我的宝库 <span class="btn-arrow">→</span></a>
+            <div class="stamp">德益</div>
+          </div>
+        </div>
+        <div class="story-media reveal reveal-d2"><span>此处填写：竖版照片<br>（比例 9:16）</span></div>
       </div>
     </div>
   </section>
 
   <!-- 档案夹：服务/方向 -->
   <section class="section">
-    <div class="wrap-wide">
+    <div class="wrap">
       <p class="section__eyebrow reveal">能力档案</p>
       <h2 class="section__title reveal">我做什么</h2>
       <p class="section__lede reveal reveal-d1">此处填写：一句话引导读者浏览下面的档案条目。</p>
@@ -109,33 +113,115 @@
     </div>
   </section>
 
-  <!-- 精选文章 -->
+  <!-- 我的文章：分类筛选 + 封面卡片 -->
   <section class="section section--alt">
     <div class="wrap">
-      <p class="section__eyebrow reveal">最新文章</p>
+      <p class="section__eyebrow reveal">我的文章</p>
       <h2 class="section__title reveal">我的文章与知识点</h2>
-      <div class="post-list reveal reveal-d1">
-        <a class="post-item" href="./articles/overseas-holding/">
-          <span class="post-item__tag">此处填写：分类</span>
-          <div class="post-item__title">此处填写：文章标题一</div>
-          <p class="post-item__excerpt">此处填写：一句摘要首句。</p>
+      <div class="cat-chips reveal reveal-d1" id="catChips" aria-label="文章分类">
+        <button class="cat-chip is-on" data-cat="all" type="button">全部分类</button>
+        <button class="cat-chip" data-cat="video" type="button">短视频教学</button>
+        <button class="cat-chip" data-cat="biz" type="button">商业思维</button>
+        <button class="cat-chip" data-cat="pro" type="button">超级专业体</button>
+        <button class="cat-chip" data-cat="book" type="button">好书分享</button>
+      </div>
+      <div class="post-grid reveal reveal-d1" id="postGrid">
+        <a class="post-card" data-cat="pro" href="./articles/overseas-holding/">
+          <div class="post-card__cover cv-pro">海外持股架构怎么搭</div>
+          <div class="post-card__body">
+            <span class="post-card__tag">超级专业体</span>
+            <div class="post-card__title">海外持股架构怎么搭：从 0 到 1 的第一层设计</div>
+            <p class="post-card__excerpt">此处填写：一句摘要首句。</p>
+          </div>
         </a>
-        <a class="post-item" href="./articles/vie-red-chip/">
-          <span class="post-item__tag">此处填写：分类</span>
-          <div class="post-item__title">此处填写：文章标题二</div>
-          <p class="post-item__excerpt">此处填写：一句摘要首句。</p>
+        <a class="post-card" data-cat="pro" href="./articles/vie-red-chip/">
+          <div class="post-card__cover cv-pro">VIE 与红筹的边界</div>
+          <div class="post-card__body">
+            <span class="post-card__tag">超级专业体</span>
+            <div class="post-card__title">VIE 与红筹的边界：两条路径怎么选</div>
+            <p class="post-card__excerpt">此处填写：一句摘要首句。</p>
+          </div>
         </a>
-        <a class="post-item" href="./articles/spv-tax-residence/">
-          <span class="post-item__tag">此处填写：分类</span>
-          <div class="post-item__title">此处填写：文章标题三</div>
-          <p class="post-item__excerpt">此处填写：一句摘要首句。</p>
+        <a class="post-card" data-cat="pro" href="./articles/spv-tax-residence/">
+          <div class="post-card__cover cv-pro">SPV 税务居民地</div>
+          <div class="post-card__body">
+            <span class="post-card__tag">超级专业体</span>
+            <div class="post-card__title">SPV 的税务居民地怎么选：注册地 ≠ 税务地</div>
+            <p class="post-card__excerpt">此处填写：一句摘要首句。</p>
+          </div>
+        </a>
+        <a class="post-card" data-cat="video" href="./articles/">
+          <div class="post-card__cover cv-video">短视频教学 · 筹备中</div>
+          <div class="post-card__body">
+            <span class="post-card__tag">短视频教学</span>
+            <div class="post-card__title">第一条短视频怎么拍：从脚本到发布</div>
+            <p class="post-card__excerpt">正在筹备中，敬请期待。</p>
+          </div>
+        </a>
+        <a class="post-card" data-cat="video" href="./articles/">
+          <div class="post-card__cover cv-video">短视频教学 · 筹备中</div>
+          <div class="post-card__body">
+            <span class="post-card__tag">短视频教学</span>
+            <div class="post-card__title">手机剪辑入门：一个人也能日更</div>
+            <p class="post-card__excerpt">正在筹备中，敬请期待。</p>
+          </div>
+        </a>
+        <a class="post-card" data-cat="biz" href="./articles/">
+          <div class="post-card__cover cv-biz">商业思维 · 筹备中</div>
+          <div class="post-card__body">
+            <span class="post-card__tag">商业思维</span>
+            <div class="post-card__title">小生意的复利思维：慢就是快</div>
+            <p class="post-card__excerpt">正在筹备中，敬请期待。</p>
+          </div>
+        </a>
+        <a class="post-card" data-cat="biz" href="./articles/">
+          <div class="post-card__cover cv-biz">商业思维 · 筹备中</div>
+          <div class="post-card__body">
+            <span class="post-card__tag">商业思维</span>
+            <div class="post-card__title">定价即战略：为什么低价留不住好客户</div>
+            <p class="post-card__excerpt">正在筹备中，敬请期待。</p>
+          </div>
+        </a>
+        <a class="post-card" data-cat="book" href="./articles/">
+          <div class="post-card__cover cv-book">好书分享 · 筹备中</div>
+          <div class="post-card__body">
+            <span class="post-card__tag">好书分享</span>
+            <div class="post-card__title">本月好书：一本改变我思考方式的书</div>
+            <p class="post-card__excerpt">正在筹备中，敬请期待。</p>
+          </div>
+        </a>
+        <a class="post-card" data-cat="book" href="./articles/">
+          <div class="post-card__cover cv-book">好书分享 · 筹备中</div>
+          <div class="post-card__body">
+            <span class="post-card__tag">好书分享</span>
+            <div class="post-card__title">创业前必读：我的 5 本书单</div>
+            <p class="post-card__excerpt">正在筹备中，敬请期待。</p>
+          </div>
         </a>
       </div>
-      <div style="margin-top:var(--sp-5)" class="reveal">
+      <div style="margin-top:var(--sp-5);text-align:center" class="reveal">
         <a class="btn btn--ghost" href="./articles/">全部文章 <span class="btn-arrow">→</span></a>
       </div>
     </div>
   </section>
+  <script>
+  (function () {
+    var chips = document.getElementById("catChips");
+    var cards = document.querySelectorAll("#postGrid .post-card");
+    if (!chips || !cards.length) return;
+    chips.addEventListener("click", function (e) {
+      var btn = e.target.closest ? e.target.closest(".cat-chip") : null;
+      if (!btn) return;
+      chips.querySelectorAll(".cat-chip").forEach(function (c) {
+        c.classList.toggle("is-on", c === btn);
+      });
+      var cat = btn.getAttribute("data-cat");
+      cards.forEach(function (card) {
+        card.style.display = (cat === "all" || card.getAttribute("data-cat") === cat) ? "" : "none";
+      });
+    });
+  })();
+  </script>
 
   <!-- 资料下载 -->
   <section class="section section--alt">
@@ -196,9 +282,9 @@
   <!-- CTA -->
   <section class="section section--alt" style="padding-bottom:var(--sp-7)">
     <div class="cta-band">
-      <h2 class="cta-band__title">此处填写：CTA 标题</h2>
-      <p class="cta-band__sub">此处填写：CTA 引导语（订阅 / 合作 / 留言）。</p>
-      <a class="btn btn--primary" href="./about/">联系我 <span class="btn-arrow">→</span></a>
+      <h2 class="cta-band__title">了解我的体系请访问 德益师兄的宝库</h2>
+      <p class="cta-band__sub">商业合作及咨询请发送邮件至：<a href="mailto:deryee.deyi@gmail.com">deryee.deyi@gmail.com</a></p>
+      <a class="btn btn--primary" href="mailto:deryee.deyi@gmail.com">发邮件联系我 <span class="btn-arrow">→</span></a>
     </div>
   </section>
 </main>

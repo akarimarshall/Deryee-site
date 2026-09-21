@@ -27,8 +27,13 @@
   window.DERYEE_ASSET_BASE = ASSET;
   window.SITE_BASE = LINK;                                   // nav.js / search.js 使用
 
-  var TARGET = NO_TOGGLE.test(path) ? null
+  /* NO_MIRROR：无对应繁体镜像的页面（如维护页）设置 window.DERYEE_NO_MIRROR = true
+     → 不做首访自动跳转、不改写网址，仅支持浏览器内就地切换 */
+  var NO_MIRROR = window.DERYEE_NO_MIRROR === true;
+
+  var TARGET = (NO_MIRROR || NO_TOGGLE.test(path)) ? null
     : (isMirror ? plainPath() : "/zh-tw" + (path === "/" ? "/" : path)) + location.search + location.hash;
+  var ORIGIN = path + location.search + location.hash;   // 本页原始（简体）地址
   window.DERYEE_TOGGLE_URL = TARGET;
 
   /* ---------- 偏好判定 ---------- */
@@ -211,18 +216,30 @@
       window.deryeeLoadTable(function () {
         if (window.DERYEE_LANG !== "zh-Hant") toHant();
         window.DERYEE_LANG = "zh-Hant";
-        if (TARGET) { try { history.replaceState(null, "", TARGET); } catch (e) {} }
+        /* 仅简体源页需要把网址同步成镜像地址；镜像页/无镜像页保持当前网址 */
+        if (!isMirror && TARGET) { try { history.replaceState(null, "", TARGET); } catch (e) {} }
         fire("zh-Hant");
       });
-    } else {
+      return;
+    }
+
+    /* —— 切回简体 —— */
+    if (snapshot) {
+      /* 本页在浏览器里转过繁体：直接还原快照（无刷新） */
       toHans();
       window.DERYEE_LANG = "zh-Hans";
-      if (TARGET) { try { history.replaceState(null, "", TARGET); } catch (e) {} }
+      var back = isMirror ? TARGET : ORIGIN;               // 镜像页→对应简体地址；源页→原始地址
+      if (back) { try { history.replaceState(null, "", back); } catch (e) {} }
       fire("zh-Hans");
+      return;
     }
+    /* 服务器预转换的繁体镜像页（无快照可还原）→ 真实跳转到简体页。
+       此前 bug：这里什么都不做，导致镜像页上永远切不回简体。 */
+    if (NO_MIRROR) { fire("zh-Hans"); return; }            // 无镜像页本就渲染简体
+    location.replace(plainPath() + location.search + location.hash);
   };
 
-  /* 供 nav.js 判断是否显示按钮 */
-  window.DERYEE_CAN_TOGGLE = !!TARGET;
+  /* 供 nav.js 判断是否显示按钮（无镜像页也允许就地切换） */
+  window.DERYEE_CAN_TOGGLE = NO_MIRROR ? true : !!TARGET;
   window.DERYEE_MIRROR_HOST = SITE_HOST;
 })();

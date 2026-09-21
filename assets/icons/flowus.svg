@@ -1,1 +1,17 @@
-<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none"><rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5.8" stroke="currentColor" stroke-width="2"/><rect x="8.1" y="6.4" width="2.2" height="4.2" rx="1.1" fill="currentColor"/><rect x="13.7" y="6.4" width="2.2" height="4.2" rx="1.1" fill="currentColor"/><path d="M7.5 12.8C8.3 16 9.9 17.4 12 17.4C14.1 17.4 15.7 16 16.5 12.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <!-- FlowUs 息流官方标志造型：斜杠 / 实心方块 / 笑脸圆形 / 三角形（取自官方 favicon 矢量，等比缩放至 24 栅格；
+       笑脸眼睛与嘴以蒙版从圆形中镂空，单色 currentColor 下深浅色主题均可见） -->
+  <defs>
+    <mask id="fu-face" maskUnits="userSpaceOnUse" x="28" y="0" width="16" height="16">
+      <rect x="28.5" y="0.3" width="14.5" height="14.5" fill="#fff"/>
+      <path d="M33.36 6.74V4.84M36.9 6.74V4.84" stroke="#000" stroke-width="2" stroke-linecap="round"/>
+      <path d="M31.92 7.71C33.01 8.57 34.53 9.02 36.18 9.02C37.92 9.02 39.49 8.51 40.54 7.55" stroke="#000" stroke-width="2" stroke-linecap="round" fill="none"/>
+    </mask>
+  </defs>
+  <g transform="translate(1.35 9.31) scale(0.3592)" fill="currentColor">
+    <path d="M1.82 14.34H3.36L11.28 0.66H9.74L1.82 14.34Z"/>
+    <rect x="12.77" y="0.66" width="13.72" height="13.72" rx="0.22"/>
+    <circle cx="35.75" cy="7.53" r="6.86" mask="url(#fu-face)"/>
+    <path d="M49.58 0.66L57.5 14.34H41.66L49.58 0.66Z"/>
+  </g>
+</svg>

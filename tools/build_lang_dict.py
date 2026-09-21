@@ -192,7 +192,7 @@ def main():
     sys.path.insert(0, os.path.join(ROOT, "tools"))
     from _s2t import S2T
     conv = S2T(table)
-    samples = ["跨境股权架构师", "视频号", "微信公众号", "知识产权声明",
+    samples = ["德益师兄的宝库", "视频号", "微信公众号", "知识产权声明",
                "此处填写：资料名称", "项目启动", "税务居民身份判断", "软件与网络数据"]
     print("  自检：")
     for s in samples:
