@@ -48,6 +48,14 @@
 - 改走 legacy `routes` + PCRE 裸负向前瞻（Vercel 官方维护示例同款写法），并把 Edge Function 由 `.js` 改 `.mjs`（避免纯静态项目里 ESM 语法被当 CommonJS 解析而导入失败）
 - 用 path-to-regexp v6（与 Vercel 同代引擎）与 Node 原生 RegExp（锚定全路径）双重验证 `routes.src` 合法且 14 条关键路径匹配正确
 
+### Fixed（508 维护关闭循环）
+- 修复部署成功但全站报 **`508 INFINITE_LOOP_DETECTED`**：原 `api/maintenance.mjs` 在维护**关闭**分支用 `fetch(request)` 透传原始 URL。Vercel 会对 Edge Function 的子请求再次套用 `vercel.json` 的 `routes`，页面路径永远命中本函数 → 函数递归调用自己无限循环 → 508
+- 根因：Vercel 的「自动递归保护」只覆盖 Node.js 运行时的 `http`/`fetch` Serverless 函数，不拦截这种由 `routes` 触发的路由循环；且不存在任何「跳过路由」的官方响应头
+- 解法：维护关闭分支不再 `fetch` 原始 URL，而是把目录式路径**映射成真实文件**（`/about/` → `/about/index.html`）再去 `fetch`。`vercel.json` 的 `routes.src` 已把 `.html` 排除在匹配之外，该子请求直接命中静态文件，**物理上不可能再次进入本函数**，循环被打断
+  - 同时把 `cleanUrls` 由 `true` 改为 `false`：否则 `/about/index.html` 会被 308 重定向回 `/about/`，重新进入函数
+  - `routes.src` 排除列表新增 `html?`，确保任何 `.html`/`.htm` 子请求都不会路由到函数
+- 验证：15 条真实页面路径（含 `/`、`/about/`、`/articles/*`、`/zh-tw/*` 等）全部映射为真实存在的 `index.html` 且均被 `routes` 排除（无循环可能）；`node --check` 确认 ESM 语法 OK
+
 ### Changed
 - 导航栏新增「资料下载」入口（共 5 项）
 - 全站页脚规范化：补「资料下载 / 联系方式」链接；首页占位「社交入口」列改为「联系」列

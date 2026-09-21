@@ -1,11 +1,11 @@
 {
   "outputDirectory": ".",
   "buildCommand": null,
-  "cleanUrls": true,
+  "cleanUrls": false,
   "trailingSlash": true,
   "routes": [
     {
-      "src": "/(?!maintenance|assets/|api/|favicon|robots\\.txt|sitemap\\.xml|.*\\.(?:css|js|svg|png|jpg|jpeg|ico|pdf|webp|woff2|woff)).*",
+      "src": "/(?!maintenance|assets/|api/|favicon|robots\\.txt|sitemap\\.xml|.*\\.(?:html?|css|js|svg|png|jpg|jpeg|ico|pdf|webp|woff2|woff)).*",
       "dest": "/api/maintenance"
     }
   ]
