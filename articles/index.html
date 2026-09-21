@@ -6,16 +6,20 @@
 <title>文章 | Deryee.pro</title>
 <meta name="description" content="此处填写：文章列表页一句话描述（SEO）。">
 <link rel="canonical" href="https://deryee.pro/articles/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://deryee.pro/articles/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://deryee.pro/zh-tw/articles/">
+    <link rel="alternate" hreflang="x-default" href="https://deryee.pro/articles/">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../styles.css">
 <script src="../assets/theme.js"></script>
+<script src="../assets/lang.js"></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
   "name": "文章",
   "url": "https://deryee.pro/articles/",
-  "author": { "@type": "Person", "name": "韩德灵" },
+  "author": { "@type": "Person", "name": "德益师兄" },
   "mainEntity": {
     "@type": "ItemList",
     "itemListElement": [
@@ -73,6 +77,7 @@
 
 <footer class="footer">
   <div class="wrap">
+    <div class="social-row" id="social-row"></div>
     <div class="footer__inner">
       <div class="footer__col">
         <h4>Deryee.pro</h4>
@@ -86,9 +91,9 @@
         <a href="../search.html">搜索</a>
       </div>
       <div class="footer__col">
-        <h4>此处填写：社交入口</h4>
-        <a href="#" rel="noopener">此处填写：平台一</a>
-        <a href="#" rel="noopener">此处填写：平台二</a>
+        <h4>联系</h4>
+        <a href="../contact/">联系方式</a>
+        <a href="../resources/">资料下载</a>
       </div>
     </div>
     <p class="footer__note">© 2026 此处填写：版权署名 · <a href="../privacy/">隐私政策</a> · <a href="../ip/">知识产权声明</a></p>
@@ -114,5 +119,7 @@
   });
 })();
 </script>
+  <script src="../assets/social-icons.js"></script>
+  <script src="../assets/social.js" defer></script>
 </body>
 </html>

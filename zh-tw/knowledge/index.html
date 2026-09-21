@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>知識欄目 | Deryee.pro</title>
+<meta name="description" content="知識欄目：知識沉澱與流轉的完整體系演示（排版復刻自 Project Cairn，佔位內容待替換為自有知識卡片）。">
+<link rel="canonical" href="https://deryee.pro/zh-tw/knowledge/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://deryee.pro/knowledge/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://deryee.pro/zh-tw/knowledge/">
+    <link rel="alternate" hreflang="x-default" href="https://deryee.pro/knowledge/">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../styles.css">
+<script src="../../assets/theme.js"></script>
+<script src="../../assets/lang.js"></script>
+<script src="../../assets/lang-table.js" defer></script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "知識欄目",
+  "url": "https://deryee.pro/zh-tw/knowledge/",
+  "author": {
+    "@type": "Person",
+    "name": "德益師兄"
+  }
+}</script>
+<style>
+  /* knowledge 页局部样式 */
+  .stage { display: grid; grid-template-columns: minmax(0, 56fr) 120px minmax(0, 54fr); gap: var(--sp-4); align-items: start; }
+  .corridor { display: flex; flex-direction: column; justify-content: center; gap: var(--sp-5); padding-top: var(--sp-6); }
+  .arrow { position: relative; text-align: center; font-size: var(--fs-micro); color: var(--ink-3); }
+  .arrow .lab { display: block; margin-bottom: 6px; font-weight: 600; }
+  .arrow .shaft { display: block; height: 2px; background: var(--hairline-strong); border-radius: 999px; position: relative; overflow: visible; }
+  .arrow .shaft::after { content: ""; position: absolute; right: -2px; top: 50%; transform: translateY(-50%); border: 5px solid transparent; border-left-color: var(--hairline-strong); }
+  .arrow.back .shaft::after { right: auto; left: -2px; border-left-color: transparent; border-right-color: var(--hairline-strong); }
+  .arrow.is-live .shaft { background: var(--accent); }
+  .arrow.is-live .shaft::after { border-left-color: var(--accent); }
+  .arrow.back.is-live .shaft::after { border-left-color: transparent; border-right-color: var(--accent); }
+  .legend { display: flex; flex-wrap: wrap; gap: var(--sp-3); margin-top: var(--sp-5); }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; font-size: var(--fs-micro); color: var(--ink-3); }
+  .legend i { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+  .ribbon {
+    margin-top: var(--sp-5); padding: var(--sp-4) var(--sp-5);
+    background: var(--surface); border: 1px solid var(--hairline); border-radius: var(--r-md);
+    font-size: var(--fs-small); color: var(--ink-2); line-height: 1.8;
+  }
+  .ribbon b { color: var(--ink); }
+  .chips { display: flex; flex-wrap: wrap; gap: var(--sp-2); margin-top: var(--sp-3); }
+  .chip {
+    font-size: var(--fs-small); padding: 7px 16px; border-radius: var(--r-pill);
+    border: 1px solid var(--hairline); background: var(--surface); color: var(--ink-2);
+    transition: border-color var(--dur-fast), transform var(--dur-fast);
+  }
+  .chip:hover { border-color: var(--accent); transform: translateY(-1px); }
+  .drawer {
+    position: fixed; top: 0; right: 0; bottom: 0; width: min(90vw, 380px); z-index: 1100;
+    background: var(--surface-solid); border-left: 1px solid var(--hairline);
+    box-shadow: var(--sh-3); transform: translateX(105%); transition: transform .4s var(--ease);
+    padding: var(--sp-5); overflow-y: auto;
+  }
+  .drawer.is-open { transform: none; }
+  .drawer h3 { font-size: var(--fs-h3); margin-bottom: var(--sp-3); padding-right: 40px; }
+  .drawer dl dt { font-size: var(--fs-micro); font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); margin-top: var(--sp-3); }
+  .drawer dl dd { font-size: var(--fs-small); color: var(--ink-2); line-height: 1.7; }
+  .drawer__close { position: absolute; top: var(--sp-4); right: var(--sp-4); width: 32px; height: 32px; border-radius: 50%; background: var(--bg-2); color: var(--ink-2); font-size: 15px; }
+  .auditlist { list-style: none; columns: 2; column-gap: var(--sp-6); margin-top: var(--sp-4); }
+  .auditlist li { font-size: var(--fs-small); color: var(--ink-2); padding: 6px 0; break-inside: avoid; border-bottom: 1px solid var(--hairline); }
+  .auditlist li::before { content: "✓"; color: var(--tag-4); font-weight: 700; margin-right: 8px; }
+  .introcol { display: grid; grid-template-columns: 1fr 1.2fr 1fr; gap: var(--sp-4); align-items: stretch; margin: var(--sp-6) 0; }
+  .ecocard { padding: var(--sp-4); border: 1px solid var(--hairline); border-radius: var(--r-md); background: var(--surface); }
+  .ecocard h4 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+  .ecocard p { font-size: var(--fs-small); color: var(--ink-2); }
+  .ecocard + .ecocard { margin-top: var(--sp-3); }
+  .cairncard { text-align: center; padding: var(--sp-6) var(--sp-5); border: 1px solid var(--hairline); border-radius: var(--r-lg); background: var(--surface); box-shadow: var(--sh-2); display: flex; flex-direction: column; justify-content: center; }
+  .cairncard .cname { font-size: var(--fs-h2); font-weight: 700; letter-spacing: -.02em; }
+  .cairncard .ctag { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; margin-top: var(--sp-3); }
+  @media (max-width: 920px) {
+    .stage { grid-template-columns: 1fr; }
+    .corridor { flex-direction: row; padding: 0; }
+    .corridor .arrow { flex: 1; }
+    .introcol { grid-template-columns: 1fr; }
+    .auditlist { columns: 1; }
+  }
+</style>
+</head>
+<body data-page="knowledge">
+<div id="site-nav"></div>
+
+<main style="padding-bottom:120px">
+  <!-- Hero + 视图切换 -->
+  <section class="hero" style="padding-bottom:var(--sp-5)">
+    <div class="glow"></div>
+    <div class="wrap" style="position:relative;z-index:1">
+      <span class="hero__eyebrow">知識欄目</span>
+      <h1 class="hero__title" style="font-size:var(--fs-h1)">知識沉澱與流轉</h1>
+      <p class="hero__sub">此處填寫：知識欄目一句話定位（佔位演示內容來自 Project Cairn，展示「知識卡片」的完整排版形態，後續替換為你自己的股權知識體系）。</p>
+      <div class="segment" role="tablist">
+        <button class="segment__item is-on" id="tabIntro" data-view="intro" role="tab">簡 介</button>
+        <button class="segment__item" id="tabDetail" data-view="detail" role="tab">詳 情</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 简介视图 ============ -->
+  <section id="viewIntro" class="wrap">
+    <!-- AI AGENT 区 -->
+    <div style="text-align:center" class="reveal">
+      <h2 class="section__title" style="font-size:var(--fs-h3)">🤖 AI AGENT</h2>
+      <p class="section__lede" style="margin-bottom:0;font-size:15px">專案中的智慧協作角色——它們產生經驗，也回收經驗。</p>
+      <div class="chips" style="justify-content:center">
+        <span class="chip">主控 Agent</span>
+        <span class="chip">調研 Agent</span>
+        <span class="chip">寫作 Agent</span>
+        <span class="chip">審校 Agent</span>
+        <span class="chip">+N</span>
+      </div>
+    </div>
+
+    <div class="flowtrack" style="max-width:520px;margin:var(--sp-5) auto"><span class="flowdot" id="fdTop"></span></div>
+
+    <!-- 三栏：生态 / 主卡 / 经验 -->
+    <div class="introcol">
+      <div class="reveal">
+        <p class="section__eyebrow" style="margin-bottom:var(--sp-3)">生態位</p>
+        <div class="ecocard"><h4>專案工作區</h4><p>經驗在這裡產生。</p></div>
+        <div class="ecocard"><h4>知識庫</h4><p>經驗在這裡沉澱、複用。</p></div>
+        <div class="ecocard"><h4>迴流通道</h4><p>沉澱的經驗反哺下一個專案。</p></div>
+      </div>
+      <div class="cairncard reveal reveal-d1 born-target" data-born="T0">
+        <div class="cname">Project Cairn</div>
+        <p style="color:var(--ink-2);font-size:15px;margin-top:6px">把 AI 協作專案中的高價值經驗，沉澱進可複用的知識庫。</p>
+        <div class="ctag">
+          <span class="badge">Agent Skill</span><span class="badge badge--t4">知識庫</span><span class="badge badge--t3">時序流轉</span>
+        </div>
+      </div>
+      <div class="reveal reveal-d2">
+        <p class="section__eyebrow" style="margin-bottom:var(--sp-3)">四類經驗</p>
+        <div class="ecocard" style="border-left:4px solid var(--tag-1)"><h4>元規則</h4><p>專案怎麼運轉的約定。</p></div>
+        <div class="ecocard" style="border-left:4px solid var(--tag-3);margin-top:var(--sp-3)"><h4>時序日誌</h4><p>每一步做了什麼、為什麼。</p></div>
+        <div class="ecocard" style="border-left:4px solid var(--tag-4);margin-top:var(--sp-3)"><h4>主題知識</h4><p>可複用的結論與方法。</p></div>
+        <div class="ecocard" style="border-left:4px solid var(--tag-5);margin-top:var(--sp-3)"><h4>外部輸入</h4><p>參考資料與引用來源。</p></div>
+      </div>
+    </div>
+
+    <div class="flowtrack" style="max-width:520px;margin:0 auto var(--sp-6)"><span class="flowdot" id="fdBottom"></span></div>
+
+    <!-- 知识库区 -->
+    <div style="text-align:center" class="reveal">
+      <h2 class="section__title" style="font-size:var(--fs-h3)">🗄 知識庫</h2>
+      <p class="section__lede" style="margin-bottom:0;font-size:15px">相容 Obsidian / Notion / 飛書——筆記卡片即最小知識單元。</p>
+    </div>
+    <p style="text-align:center;font-size:var(--fs-small);color:var(--ink-3);margin-top:var(--sp-4)">↓ 切到「詳 情」看完整目錄與筆記牆，或點底部播放器看時序流轉。</p>
+  </section>
+
+  <!-- ============ 详情视图 ============ -->
+  <section id="viewDetail" class="wrap-wide" style="display:none">
+    <div class="stage">
+      <!-- 项目目录 -->
+      <section class="panel">
+        <div class="panel__tab"><span class="tab-dot"></span>📁 專案目錄</div>
+        <div class="panel__body">
+          <ul class="tree">
+            <li class="born-target" data-born="T1">
+              <span class="tree__item-title">AGENTS.md</span>
+              <p class="tree__item-desc">全專案的元規則：角色分工、協作邊界、經驗沉澱觸發點。</p>
+              <button class="badge" data-detail="agents">元規則 · 詳</button>
+            </li>
+            <li class="born-target" data-born="T1">
+              <span class="tree__item-title">CLAUDE.md</span>
+              <p class="tree__item-desc">主控 Agent 的啟動配置。</p>
+              <button class="badge badge--t1" data-detail="claude">元規則 · 簡</button>
+            </li>
+            <li class="born-target" data-born="T2">
+              <span class="tree__item-title">ROADMAP.md</span>
+              <p class="tree__item-desc">裡程碑與當前階段。</p>
+              <button class="badge" data-detail="roadmap">元規則 · 詳</button>
+            </li>
+            <li class="born-target" data-born="T4">
+              <span class="tree__item-title">LOG/ · 時序目錄</span>
+              <p class="tree__item-desc">按時序記錄每一步。</p>
+              <button class="badge badge--t3" data-detail="log">時序</button>
+              <ul>
+                <li><span class="tree__item-title">T0-專案啟動.md</span><p class="tree__item-desc">需求與邊界快照。</p></li>
+                <li><span class="tree__item-title">T3-方案生成.md</span><p class="tree__item-desc">方案與取捨記錄。</p></li>
+              </ul>
+            </li>
+            <li class="born-target" data-born="T5">
+              <span class="tree__item-title">PROC/ · 過程製品</span>
+              <p class="tree__item-desc">草稿、中間產物。</p>
+              <button class="badge badge--t2" data-detail="proc">製品</button>
+            </li>
+            <li class="born-target" data-born="T6">
+              <span class="tree__item-title">TOPIC.md · 主題筆記</span>
+              <p class="tree__item-desc">本專案萃取出的可複用知識。</p>
+              <button class="badge badge--t4" data-detail="topic">知識 · 詳</button>
+            </li>
+            <li class="born-target" data-born="T5">
+              <span class="tree__item-title">EXT/ · 外部輸入</span>
+              <p class="tree__item-desc">使用者提供的資料與外部參考。</p>
+              <button class="badge badge--t5" data-detail="ext">外部</button>
+            </li>
+            <li class="born-target" data-born="T7">
+              <span class="tree__item-title">REF/ + CITED.md</span>
+              <p class="tree__item-desc">參考資料與引用登記。</p>
+              <button class="badge badge--t5" data-detail="ref">引用</button>
+            </li>
+            <li class="born-target" data-born="T7">
+              <span class="tree__item-title">INDEX.md · 知識庫索引</span>
+              <p class="tree__item-desc">全部主題筆記的總目錄。</p>
+              <button class="badge badge--t4" data-detail="index">索引</button>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 流转箭头 -->
+      <div class="corridor">
+        <div class="arrow" id="aGrad"><span class="lab">經驗流出</span><span class="shaft"></span></div>
+        <div class="arrow back" id="aPull"><span class="lab">知識迴流</span><span class="shaft"></span></div>
+        <p style="font-size:var(--fs-micro);color:var(--ink-3);text-align:center">播放時序<br>觀察流動</p>
+      </div>
+
+      <!-- 知识库 -->
+      <section class="panel">
+        <div class="panel__tab"><span class="tab-dot" style="background:var(--tag-4)"></span>🗄 知識庫 · Obsidian / Notion / 飛書</div>
+        <div class="panel__body">
+          <p class="wiki__fm" style="margin-bottom:var(--sp-3)">INDEX · <span id="indexCount">5</span> 條主題筆記</p>
+          <div class="wikigrid">
+            <article class="wiki born-target" data-born="T7">
+              <div class="wiki__title">經驗萃取的四步法</div>
+              <div class="wiki__fm">type: method · status: stable</div>
+              <p class="wiki__desc">從專案時序日誌中識別高價值片段，四步萃取為可複用知識卡。</p>
+              <a class="wiki__link" href="#w2" onclick="showDetail('w1');return false;">[[引用登記規範]]</a>
+            </article>
+            <article class="wiki born-target" data-born="T7">
+              <div class="wiki__title">引用登記規範</div>
+              <div class="wiki__fm">type: rule · status: stable</div>
+              <p class="wiki__desc">每條入庫知識必須登記來源，保證可追溯。</p>
+              <a class="wiki__link" href="#" onclick="showDetail('w2');return false;">[[經驗萃取的四步法]]</a>
+            </article>
+            <article class="wiki born-target" data-born="T8">
+              <div class="wiki__title">知識迴流觸發點</div>
+              <div class="wiki__fm">type: rule · status: stable</div>
+              <p class="wiki__desc">定義新專案在哪些節點必須檢索既有知識。</p>
+              <a class="wiki__link" href="#" onclick="showDetail('w3');return false;">[[卡片粒度原則]]</a>
+            </article>
+            <article class="wiki born-target" data-born="T8">
+              <div class="wiki__title">卡片粒度原則</div>
+              <div class="wiki__fm">type: method · status: draft</div>
+              <p class="wiki__desc">一張卡只講一件事，控制在 200 字以內。</p>
+              <a class="wiki__link" href="#" onclick="showDetail('w4');return false;">[[雙鏈的意義]]</a>
+            </article>
+            <article class="wiki born-target" data-born="T8">
+              <div class="wiki__title">雙鏈的意義</div>
+              <div class="wiki__fm">type: note · status: draft</div>
+              <p class="wiki__desc">用 [[雙鏈]] 把卡片織成網，而不是樹。</p>
+              <a class="wiki__link" href="#" onclick="showDetail('w5');return false;">[[經驗萃取的四步法]]</a>
+            </article>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- 图例 -->
+    <div class="legend">
+      <span><i style="background:var(--tag-1)"></i>元規則</span>
+      <span><i style="background:var(--tag-3)"></i>時序日誌</span>
+      <span><i style="background:var(--tag-4)"></i>知識</span>
+      <span><i style="background:var(--tag-5)"></i>外部輸入</span>
+      <span><i style="background:var(--tag-2)"></i>過程製品</span>
+    </div>
+
+    <!-- 仲裁规则 -->
+    <div class="ribbon">
+      <b>仲裁規則：</b>當知識庫與專案現場衝突時——<b>現場優先</b>，但衝突本身要在 24h 內沉澱為一張新知識卡；當兩張知識卡衝突時，<b>引用鏈更長、被驗證次數更多者優先</b>。
+    </div>
+
+    <!-- 体检清单 -->
+    <div class="ribbon" style="margin-top:var(--sp-3)">
+      <b>知識庫體檢清單（14 條，節選 8 條）：</b>
+      <ul class="auditlist">
+        <li>每張卡都有 type 與 status</li>
+        <li>每條入庫知識登記了來源</li>
+        <li>INDEX 與實際卡片數一致</li>
+        <li>無孤兒卡（至少一條雙鏈）</li>
+        <li>時序日誌無斷檔</li>
+        <li>引用的 EXT 檔案真實存在</li>
+        <li>draft 超過 30 天需複審</li>
+        <li>每季度迴流一次舊專案經驗</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<!-- 底部 Dock 播放器 -->
+<div class="dock" id="dock">
+  <div class="dock__bar">
+    <span class="dock__label">時序與流轉</span>
+    <div class="dock__steps" id="steps"></div>
+    <div class="dock__controls">
+      <button class="dock__btn dock__btn--ghost" id="btnView">詳情 ▴</button>
+      <button class="dock__btn" id="btnPlay">▶ 播放</button>
+    </div>
+  </div>
+</div>
+
+<!-- 详情抽屉 -->
+<aside class="drawer" id="drawer" aria-hidden="true">
+  <button class="drawer__close" id="drawerClose">✕</button>
+  <div id="drawerBody"></div>
+</aside>
+
+<footer class="footer" style="margin-top:var(--sp-6)">
+  <div class="wrap">
+    <div class="social-row" id="social-row"></div>
+    <div class="footer__inner">
+      <div class="footer__col">
+        <h4>Deryee.pro</h4>
+        <a href="../../about/">關於我</a>
+        <a href="../../system/">我的體系</a>
+      </div>
+      <div class="footer__col">
+        <h4>內容</h4>
+        <a href="../../resources/">資料下載</a>
+        <a href="../../articles/">全部文章</a>
+        <a href="../../search.html">搜尋</a>
+      </div>
+    </div>
+    <p class="footer__note">© 2026 此處填寫：版權署名 · 本頁排版結構復刻自 Project Cairn（iblinkq），內容為佔位演示。 · <a href="../../privacy/">隱私政策</a> · <a href="../../ip/">智慧財產權聲明</a></p>
+  </div>
+</footer>
+
+<script src="../../assets/nav.js" defer></script>
+<script src="../../assets/reveal.js" defer></script>
+<script src="../../assets/dock.js" defer></script>
+  <script src="../../assets/social-icons.js"></script>
+  <script src="../../assets/social.js" defer></script>
+</body>
+</html>

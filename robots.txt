@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /dashboard/
+Disallow: /maintenance/
 
 Sitemap: https://deryee.pro/sitemap.xml

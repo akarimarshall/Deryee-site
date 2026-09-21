@@ -1,6 +1,7 @@
 # 本地临时与系统文件
 *.tmp
 *.temp
+icon-preview.html
 .DS_Store
 Thumbs.db
 

@@ -1,12 +1,34 @@
 #!/usr/bin/env python3
-"""扫描全站 HTML，生成 assets/search-index.json"""
+"""扫描全站 HTML，生成 assets/search-index.json
+
+用法：
+    python tools/build_index.py             # 简体索引（排除 zh-tw/）
+    python tools/build_index.py --mirror    # 繁体索引 -> zh-tw/assets/search-index.json
+"""
+import io
 import json
 import re
+import sys
 from html.parser import HTMLParser
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "assets" / "search-index.json"
+MIRROR = "--mirror" in sys.argv
+if MIRROR:
+    OUT = ROOT / "zh-tw" / "assets" / "search-index.json"
+
+# 繁体索引需要转换标题/摘要/正文
+_CONV = None
+
+
+def conv():
+    global _CONV
+    if _CONV is None:
+        sys.path.insert(0, str(ROOT / "tools"))
+        from _s2t import S2T
+        _CONV = S2T(json.load(io.open(str(ROOT / "tools" / "lang-table.json"), encoding="utf-8")))
+    return _CONV
 
 
 class Extractor(HTMLParser):
@@ -53,7 +75,7 @@ def meta_desc(html: str) -> str:
 
 
 def page_category(rel: Path) -> str:
-    parts = rel.parts
+    parts = [p for p in rel.parts if p != "zh-tw"]
     if len(parts) == 1:
         return "核心页"
     return parts[0]
@@ -61,9 +83,17 @@ def page_category(rel: Path) -> str:
 
 def main():
     items = []
-    for html_path in sorted(ROOT.rglob("index.html")):
+    scan_root = ROOT / "zh-tw" if MIRROR else ROOT
+    for html_path in sorted(scan_root.rglob("index.html")):
         rel = html_path.relative_to(ROOT)
-        if "templates" in rel.parts:
+        parts = rel.parts
+        if "templates" in parts:
+            continue
+        if "maintenance" in parts:
+            continue
+        if MIRROR and parts[0] != "zh-tw":
+            continue
+        if not MIRROR and "zh-tw" in parts:
             continue
         html = html_path.read_text(encoding="utf-8")
         ex = Extractor()
@@ -73,23 +103,36 @@ def main():
             pass
         desc = meta_desc(html)
         title = ex.title or ex.h1 or str(rel)
-        url = "https://deryee.pro/" + (str(rel.parent).replace("\\", "/") + "/" if str(rel.parent) != "." else "")
+        parent = rel.parent
+        if MIRROR:
+            parent = Path(*[p for p in parent.parts if p != "zh-tw"]) if "zh-tw" in parent.parts else parent
+        url = "https://deryee.pro/" + ("/zh-tw" if MIRROR else "") + (
+            str(parent).replace("\\", "/") + "/" if str(parent) != "." else "/")
         text = " ".join(ex.h2s + ex.paras)[:600]
+        cat = page_category(rel)
+        if MIRROR:
+            c = conv()
+            title, desc, text, cat = c.convert(title), c.convert(desc), c.convert(text), c.convert(cat)
         items.append({
             "title": title,
             "desc": desc,
             "text": text,
             "url": url,
-            "category": page_category(rel),
+            "category": cat,
         })
     # search.html 本身
+    title, desc, cat = "站内搜索", "全站关键词搜索", "工具"
+    if MIRROR:
+        c = conv()
+        title, desc, cat = c.convert(title), c.convert(desc), c.convert(cat)
     items.append({
-        "title": "站内搜索",
-        "desc": "全站关键词搜索",
+        "title": title,
+        "desc": desc,
         "text": "",
-        "url": "https://deryee.pro/search.html",
-        "category": "工具",
+        "url": "https://deryee.pro/" + ("/zh-tw" if MIRROR else "") + "/search.html",
+        "category": cat,
     })
+    OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(items, ensure_ascii=False, indent=1), encoding="utf-8")
     print(f"OK: {len(items)} 条索引 -> {OUT}")
 

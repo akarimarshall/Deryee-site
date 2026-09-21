@@ -1,14 +1,178 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://deryee.pro/about/</loc><lastmod>2026-09-20</lastmod><priority>0.8</priority></url>
-  <url><loc>https://deryee.pro/articles/</loc><lastmod>2026-09-20</lastmod><priority>0.8</priority></url>
-  <url><loc>https://deryee.pro/articles/overseas-holding/</loc><lastmod>2026-09-20</lastmod><priority>0.8</priority></url>
-  <url><loc>https://deryee.pro/articles/spv-tax-residence/</loc><lastmod>2026-09-20</lastmod><priority>0.8</priority></url>
-  <url><loc>https://deryee.pro/articles/vie-red-chip/</loc><lastmod>2026-09-20</lastmod><priority>0.8</priority></url>
-  <url><loc>https://deryee.pro/</loc><lastmod>2026-09-20</lastmod><priority>1.0</priority></url>
-  <url><loc>https://deryee.pro/ip/</loc><lastmod>2026-09-20</lastmod><priority>0.8</priority></url>
-  <url><loc>https://deryee.pro/knowledge/</loc><lastmod>2026-09-20</lastmod><priority>0.8</priority></url>
-  <url><loc>https://deryee.pro/privacy/</loc><lastmod>2026-09-20</lastmod><priority>0.8</priority></url>
-  <url><loc>https://deryee.pro/system/</loc><lastmod>2026-09-20</lastmod><priority>0.8</priority></url>
-  <url><loc>https://deryee.pro/search.html</loc><lastmod>2026-09-20</lastmod><priority>0.3</priority></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://deryee.pro/about/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://deryee.pro/about/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://deryee.pro/zh-tw/about/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deryee.pro/about/"/>
+  </url>
+  <url>
+    <loc>https://deryee.pro/zh-tw/about/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://deryee.pro/about/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://deryee.pro/zh-tw/about/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deryee.pro/about/"/>
+  </url>
+  <url>
+    <loc>https://deryee.pro/articles/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://deryee.pro/articles/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://deryee.pro/zh-tw/articles/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deryee.pro/articles/"/>
+  </url>
+  <url>
+    <loc>https://deryee.pro/zh-tw/articles/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://deryee.pro/articles/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://deryee.pro/zh-tw/articles/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deryee.pro/articles/"/>
+  </url>
+  <url>
+    <loc>https://deryee.pro/articles/overseas-holding/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://deryee.pro/articles/overseas-holding/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://deryee.pro/zh-tw/articles/overseas-holding/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deryee.pro/articles/overseas-holding/"/>
+  </url>
+  <url>
+    <loc>https://deryee.pro/zh-tw/articles/overseas-holding/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://deryee.pro/articles/overseas-holding/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://deryee.pro/zh-tw/articles/overseas-holding/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deryee.pro/articles/overseas-holding/"/>
+  </url>
+  <url>
+    <loc>https://deryee.pro/articles/spv-tax-residence/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://deryee.pro/articles/spv-tax-residence/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://deryee.pro/zh-tw/articles/spv-tax-residence/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deryee.pro/articles/spv-tax-residence/"/>
+  </url>
+  <url>
+    <loc>https://deryee.pro/zh-tw/articles/spv-tax-residence/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://deryee.pro/articles/spv-tax-residence/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://deryee.pro/zh-tw/articles/spv-tax-residence/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deryee.pro/articles/spv-tax-residence/"/>
+  </url>
+  <url>
+    <loc>https://deryee.pro/articles/vie-red-chip/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://deryee.pro/articles/vie-red-chip/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://deryee.pro/zh-tw/articles/vie-red-chip/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deryee.pro/articles/vie-red-chip/"/>
+  </url>
+  <url>
+    <loc>https://deryee.pro/zh-tw/articles/vie-red-chip/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://deryee.pro/articles/vie-red-chip/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://deryee.pro/zh-tw/articles/vie-red-chip/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deryee.pro/articles/vie-red-chip/"/>
+  </url>
+  <url>
+    <loc>https://deryee.pro/contact/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://deryee.pro/contact/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://deryee.pro/zh-tw/contact/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deryee.pro/contact/"/>
+  </url>
+  <url>
+    <loc>https://deryee.pro/zh-tw/contact/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://deryee.pro/contact/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://deryee.pro/zh-tw/contact/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deryee.pro/contact/"/>
+  </url>
+  <url>
+    <loc>https://deryee.pro/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://deryee.pro/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://deryee.pro/zh-tw/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deryee.pro/"/>
+  </url>
+  <url>
+    <loc>https://deryee.pro/zh-tw/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://deryee.pro/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://deryee.pro/zh-tw/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deryee.pro/"/>
+  </url>
+  <url>
+    <loc>https://deryee.pro/ip/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://deryee.pro/knowledge/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://deryee.pro/knowledge/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://deryee.pro/zh-tw/knowledge/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deryee.pro/knowledge/"/>
+  </url>
+  <url>
+    <loc>https://deryee.pro/zh-tw/knowledge/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://deryee.pro/knowledge/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://deryee.pro/zh-tw/knowledge/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deryee.pro/knowledge/"/>
+  </url>
+  <url>
+    <loc>https://deryee.pro/privacy/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://deryee.pro/resources/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://deryee.pro/resources/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://deryee.pro/zh-tw/resources/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deryee.pro/resources/"/>
+  </url>
+  <url>
+    <loc>https://deryee.pro/zh-tw/resources/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://deryee.pro/resources/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://deryee.pro/zh-tw/resources/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deryee.pro/resources/"/>
+  </url>
+  <url>
+    <loc>https://deryee.pro/system/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://deryee.pro/system/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://deryee.pro/zh-tw/system/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deryee.pro/system/"/>
+  </url>
+  <url>
+    <loc>https://deryee.pro/zh-tw/system/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://deryee.pro/system/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://deryee.pro/zh-tw/system/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://deryee.pro/system/"/>
+  </url>
+  <url>
+    <loc>https://deryee.pro/search.html</loc>
+    <lastmod>2026-09-21</lastmod>
+    <priority>0.3</priority>
+  </url>
 </urlset>

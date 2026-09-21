@@ -1,0 +1,17 @@
+# 保护词表：这些词在简繁转换中原样输出，不做任何字形/词汇替换
+# 一行一个；以 # 开头为注释；空行忽略
+# 说明：拉丁字母本身不受转换影响，列在这里是防止词组表误伤
+
+Deryee
+deryee.pro
+FlowUs
+Obsidian
+Notion
+Vercel
+GitHub
+SPV
+VIE
+PDF
+SVG
+HTML
+JSON-LD

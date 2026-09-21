@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>文章 | Deryee.pro</title>
+<meta name="description" content="此處填寫：文章列表頁一句話描述（SEO）。">
+<link rel="canonical" href="https://deryee.pro/zh-tw/articles/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://deryee.pro/articles/">
+    <link rel="alternate" hreflang="zh-Hant" href="https://deryee.pro/zh-tw/articles/">
+    <link rel="alternate" hreflang="x-default" href="https://deryee.pro/articles/">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../styles.css">
+<script src="../../assets/theme.js"></script>
+<script src="../../assets/lang.js"></script>
+<script src="../../assets/lang-table.js" defer></script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "文章",
+  "url": "https://deryee.pro/zh-tw/articles/",
+  "author": {
+    "@type": "Person",
+    "name": "德益師兄"
+  },
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "url": "https://deryee.pro/zh-tw/articles/overseas-holding/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "url": "https://deryee.pro/zh-tw/articles/vie-red-chip/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "url": "https://deryee.pro/zh-tw/articles/spv-tax-residence/"
+      }
+    ]
+  }
+}</script>
+</head>
+<body data-page="articles">
+<div id="site-nav"></div>
+
+<main>
+  <section class="hero" style="padding-bottom:var(--sp-6)">
+    <div class="glow"></div>
+    <div class="wrap" style="position:relative;z-index:1">
+      <span class="hero__eyebrow">文章</span>
+      <h1 class="hero__title" style="font-size:var(--fs-h1)">知識卡片<br>與長文</h1>
+      <p class="hero__sub">此處填寫：內容板塊一句話描述（寫什麼領域、什麼頻率更新）。</p>
+      <div class="segment" id="catFilter" role="tablist">
+        <a class="segment__item is-on" href="#" data-cat="all">全部</a>
+        <a class="segment__item" href="#" data-cat="cat-1">此處填寫：分類一</a>
+        <a class="segment__item" href="#" data-cat="cat-2">此處填寫：分類二</a>
+        <a class="segment__item" href="#" data-cat="cat-3">此處填寫：分類三</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:var(--sp-5)">
+    <div class="wrap" style="max-width:760px">
+      <div class="post-list">
+        <a class="post-item" href="../overseas-holding/" data-cat="cat-1">
+          <span class="post-item__tag">此處填寫：分類一</span>
+          <div class="post-item__title">此處填寫：文章標題一（海外持股架構怎麼搭）</div>
+          <p class="post-item__excerpt">此處填寫：一句摘要首句。</p>
+        </a>
+        <a class="post-item" href="../vie-red-chip/" data-cat="cat-2">
+          <span class="post-item__tag">此處填寫：分類二</span>
+          <div class="post-item__title">此處填寫：文章標題二（VIE 與紅籌的邊界）</div>
+          <p class="post-item__excerpt">此處填寫：一句摘要首句。</p>
+        </a>
+        <a class="post-item" href="../spv-tax-residence/" data-cat="cat-3">
+          <span class="post-item__tag">此處填寫：分類三</span>
+          <div class="post-item__title">此處填寫：文章標題三（SPV 的稅務居民地選擇）</div>
+          <p class="post-item__excerpt">此處填寫：一句摘要首句。</p>
+        </a>
+        <!-- 新文章复制一条 post-item，data-cat 用对应分类；或用 tools/new_article.py 生成 -->
+      </div>
+      <p style="margin-top:var(--sp-5);font-size:var(--fs-small);color:var(--ink-3)">此處填寫：分頁或訂閱引導（佔位）。</p>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="social-row" id="social-row"></div>
+    <div class="footer__inner">
+      <div class="footer__col">
+        <h4>Deryee.pro</h4>
+        <a href="../../about/">關於我</a>
+        <a href="../../system/">我的體系</a>
+        <a href="../../knowledge/">知識欄目</a>
+      </div>
+      <div class="footer__col">
+        <h4>內容</h4>
+        <a href="../../articles/">全部文章</a>
+        <a href="../../search.html">搜尋</a>
+      </div>
+      <div class="footer__col">
+        <h4>聯絡</h4>
+        <a href="../../contact/">聯絡方式</a>
+        <a href="../../resources/">資料下載</a>
+      </div>
+    </div>
+    <p class="footer__note">© 2026 此處填寫：版權署名 · <a href="../../privacy/">隱私政策</a> · <a href="../../ip/">智慧財產權聲明</a></p>
+  </div>
+</footer>
+
+<script src="../../assets/nav.js" defer></script>
+<script src="../../assets/reveal.js" defer></script>
+<script>
+(function () {
+  var bar = document.getElementById("catFilter");
+  if (!bar) return;
+  bar.addEventListener("click", function (e) {
+    var a = e.target.closest(".segment__item");
+    if (!a) return;
+    e.preventDefault();
+    bar.querySelectorAll(".segment__item").forEach(function (x) { x.classList.remove("is-on"); });
+    a.classList.add("is-on");
+    var cat = a.getAttribute("data-cat");
+    document.querySelectorAll(".post-item").forEach(function (item) {
+      item.style.display = (cat === "all" || item.getAttribute("data-cat") === cat) ? "" : "none";
+    });
+  });
+})();
+</script>
+  <script src="../../assets/social-icons.js"></script>
+  <script src="../../assets/social.js" defer></script>
+</body>
+</html>

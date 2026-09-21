@@ -2,5 +2,11 @@
   "outputDirectory": ".",
   "buildCommand": null,
   "cleanUrls": true,
-  "trailingSlash": true
+  "trailingSlash": true,
+  "rewrites": [
+    {
+      "source": "/:path((?!maintenance$|maintenance/|assets/|api/|favicon|robots.txt|sitemap.xml|.*\\.(css|js|svg|png|jpg|jpeg|ico|pdf|webp|woff2|woff)).*)",
+      "destination": "/api/maintenance"
+    }
+  ]
 }

@@ -1,5 +1,8 @@
 /* deryee.pro — knowledge 页：视图切换 + T0–T8 时序播放器 + 详情抽屉 */
 (function () {
+  /* T()：lang.js 提供；简体态恒等。所有渲染出口都过一层，切繁后新生成的内容自动跟随 */
+  var T = window.T || function (s) { return s; };
+
   /* ---------- 数据 ---------- */
   var STEPS = [
     { id: "T0", label: "项目启动", born: ["T0"] },
@@ -45,7 +48,7 @@
     viewDetail.style.display = isIntro ? "none" : "";
     tabIntro.classList.toggle("is-on", isIntro);
     tabDetail.classList.toggle("is-on", !isIntro);
-    btnView.textContent = isIntro ? "详情 ▴" : "简介 ▾";
+    btnView.textContent = isIntro ? T("详情 ▴") : T("简介 ▾");
   }
   if (tabIntro && tabDetail) {
     tabIntro.addEventListener("click", function () { setView("intro"); });
@@ -62,7 +65,7 @@
     STEPS.forEach(function (s, i) {
       var b = document.createElement("button");
       b.className = "dock__step";
-      b.textContent = s.id + " " + s.label;
+      b.textContent = s.id + " " + T(s.label);
       b.addEventListener("click", function () { stop(); go(i); });
       stepsHost.appendChild(b);
     });
@@ -98,7 +101,7 @@
   }
   function play() {
     playing = true;
-    $("#btnPlay").textContent = "❚❚ 暂停";
+    $("#btnPlay").textContent = T("❚❚ 暂停");
     ghostAll();
     go(0);
     timer = setInterval(function () {
@@ -109,7 +112,7 @@
   function stop() {
     playing = false;
     clearInterval(timer);
-    var b = $("#btnPlay"); if (b) b.textContent = "▶ 播放";
+    var b = $("#btnPlay"); if (b) b.textContent = T("▶ 播放");
     $all(".flowdot").forEach(function (d) { d.classList.remove("is-flowing"); });
     $all(".born-target").forEach(function (el) { el.classList.remove("is-ghost"); });
   }
@@ -121,8 +124,8 @@
   function showDetail(key) {
     var d = DETAILS[key];
     if (!d || !drawer) return;
-    var html = "<h3>" + d.title + "</h3><dl>";
-    d.rows.forEach(function (r) { html += "<dt>" + r[0] + "</dt><dd>" + r[1] + "</dd>"; });
+    var html = "<h3>" + T(d.title) + "</h3><dl>";
+    d.rows.forEach(function (r) { html += "<dt>" + T(r[0]) + "</dt><dd>" + T(r[1]) + "</dd>"; });
     html += "</dl>";
     drawerBody.innerHTML = html;
     drawer.classList.add("is-open");
