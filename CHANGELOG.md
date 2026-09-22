@@ -5,6 +5,17 @@
 
 ## [未发布]
 
+### Changed（shosho 风格全站改版 + 交互修复）
+- **全站边距对齐 shosho.tw（响应式）**：`--gutter` 改为 `clamp(20px,6vw,88px)`、`--maxw` 1040px、`--maxw-wide` 1280px，手机端自动收到 20px
+- **站内搜索改为同页浮层**：新增 `.search-overlay`（`z-index:900`，导航栏 `z-index:1000` 保持在上方）；`nav.js` 捕获所有 `a[href$="search.html"]` 触发浮层，复用 `search-index.json` 打分/渲染；`search.html` 保留为无 JS / SEO 兜底
+- **删除「关于我」页**：`about/index.html` 与 `zh-tw/about/index.html` 已删；导航/页脚/hero 的「关于我」经 `nav.js` 全局拦截器改为「回首页顶端」（首页内平滑滚动、子页跳回首页）；`system` 页「联系我」改指向 `contact`；`sitemap.xml`、`search-index.json`、各页 JSON-LD `url` 同步清理
+- **页脚图标行与底部间距拉开**：`.footer` padding-bottom 72px→112px，`.footer .social-row` 补 margin-bottom
+- **二维码修复**：`social.js` 中 qr 路径由根绝对 `/assets/qr/...` 改为相对 `assets/qr/...`，各页深均可加载（PNG 占位图已就绪）
+- **邮件链接修复**：`resolve()` 增加协议头判断（`mailto:` 原样返回），页脚邮件图标正确唤起邮件 App
+- **FlowUs 图标改为文字**：社交栏 FlowUs 入口渲染英文「FlowUs」文字（原 SVG 仅用 viewBox ~21% 高度显小）
+- **首页 CTA**：「发邮件联系我」→「访问宝库→」，链接至 Flowus（deryee.flowus.cn）（简繁同步）
+- 小红书链接保持 `xhslink.cn`（500 为第三方短链服务问题，非本站代码）
+
 ### Changed（首页与全站体验批量改版）
 - **修复「大标题版块位置错误」根因**：`styles.css` 维护页规则块末尾有一个孤儿 `}`，导致 CSS 解析器吞掉整条 `.hero` 规则（padding-top 变 0，eyebrow 被导航栏遮住）。已修复结构并把 `.nav__mobile .nav__link` 归位到移动端媒体查询内
 - **我的故事**：改为左文右图双栏（`.story`），右侧新增 9:16 竖版照片位（`<img>` 直接放入即自动裁切）；按钮「了解我的体系」→「**了解我的宝库**」（全站统一，含 3 篇文章与模板）；印章占位填入关键词「**德益**」

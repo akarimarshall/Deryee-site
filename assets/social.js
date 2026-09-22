@@ -16,9 +16,9 @@
   /* ---------- 平台配置：正式链接（2026-09-22 接入） ---------- */
   var PLATFORMS = [
     { key: "email",        label: "工作邮箱",   href: "mailto:deryee.deyi@gmail.com" },
-    { key: "wechat-work",  label: "微信工作号", href: "#", qr: "/assets/qr/wechat-work.png" },
-    { key: "wechat-mp",    label: "微信公众号", href: "#", qr: "/assets/qr/wechat-mp.png" },
-    { key: "channels",     label: "视频号",     href: "#", qr: "/assets/qr/channels.png" },
+    { key: "wechat-work",  label: "微信工作号", href: "#", qr: "assets/qr/wechat-work.png" },
+    { key: "wechat-mp",    label: "微信公众号", href: "#", qr: "assets/qr/wechat-mp.png" },
+    { key: "channels",     label: "视频号",     href: "#", qr: "assets/qr/channels.png" },
     { key: "douyin",       label: "抖音",       href: "https://www.douyin.com/user/MS4wLjABAAAAy8X5EQX1GtUmZYLBMpvBFTWfl-DL6NG3MW_pMNySVwY?" },
     { key: "xiaohongshu",  label: "小红书",     href: "https://xhslink.cn/o/3MUeoSyXO9E" },
     { key: "bilibili",     label: "B站",        href: "https://space.bilibili.com/637598" },
@@ -37,6 +37,7 @@
 
   function resolve(path) {
     if (!path) return path;
+    if (/^[a-z]+:/i.test(path)) return path;                                // mailto:/tel: 等协议地址原样返回
     if (path.indexOf("://") > -1 || path.charAt(0) === "/") return path;   // 绝对地址原样
     return base + path;
   }
@@ -50,12 +51,15 @@
   var html = PLATFORMS.map(function (p) {
     var href = resolve(p.href);
     var isMail = href.indexOf("mailto:") === 0;
+    var icon = (p.key === "flowus")
+      ? '<span class="social-icon social-icon--text">FlowUs</span>'
+      : '<span class="social-icon">' + (ICONS[p.key] || fallback) + "</span>";
     return '<a class="social-link" href="' + href + '"' +
       (p.qr ? ' data-qr="' + resolve(p.qr) + '" data-label="' + p.label + '"' : "") +
       ' aria-label="' + T(p.label) + '" title="' + T(p.label) + '"' +
       (isMail || p.qr ? "" : ' target="_blank" rel="noopener"') +
       ">" +
-      '<span class="social-icon">' + (ICONS[p.key] || fallback) + "</span>" +
+      icon +
       "</a>";
   }).join("");
 

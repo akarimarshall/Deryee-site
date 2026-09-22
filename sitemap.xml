@@ -1,22 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://deryee.pro/about/</loc>
-    <lastmod>2026-09-22</lastmod>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://deryee.pro/about/"/>
-    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://deryee.pro/zh-tw/about/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deryee.pro/about/"/>
-  </url>
-  <url>
-    <loc>https://deryee.pro/zh-tw/about/</loc>
-    <lastmod>2026-09-22</lastmod>
-    <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://deryee.pro/about/"/>
-    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://deryee.pro/zh-tw/about/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://deryee.pro/about/"/>
-  </url>
-  <url>
     <loc>https://deryee.pro/articles/</loc>
     <lastmod>2026-09-22</lastmod>
     <priority>0.8</priority>
